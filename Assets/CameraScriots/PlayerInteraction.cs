@@ -9,7 +9,8 @@ public class PlayerInteraction : MonoBehaviour
 
     void Update()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (!cameraController.IsInteracting() &&
+    Mouse.current.leftButton.wasPressedThisFrame)
         {
             TryInteract();
         }
