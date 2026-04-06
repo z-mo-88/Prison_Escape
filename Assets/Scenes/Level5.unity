@@ -1206,15 +1206,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4811549221200363838, guid: 08008f579a6dfe84191a51323a92a523, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4811549221200363838, guid: 08008f579a6dfe84191a51323a92a523, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4811549221200363838, guid: 08008f579a6dfe84191a51323a92a523, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4811549221200363838, guid: 08008f579a6dfe84191a51323a92a523, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1222,11 +1222,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4811549221200363838, guid: 08008f579a6dfe84191a51323a92a523, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0046
+      value: -0.0026
       objectReference: {fileID: 0}
     - target: {fileID: 4811549221200363838, guid: 08008f579a6dfe84191a51323a92a523, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.0237
+      value: -0.003
       objectReference: {fileID: 0}
     - target: {fileID: 4811549221200363838, guid: 08008f579a6dfe84191a51323a92a523, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1274,16 +1274,28 @@ PrefabInstance:
       value: FocusPoint
       objectReference: {fileID: 0}
     - target: {fileID: 4811549221200363838, guid: 08008f579a6dfe84191a51323a92a523, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4811549221200363838, guid: 08008f579a6dfe84191a51323a92a523, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4811549221200363838, guid: 08008f579a6dfe84191a51323a92a523, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4811549221200363838, guid: 08008f579a6dfe84191a51323a92a523, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0002
+      value: -0.0025
       objectReference: {fileID: 0}
     - target: {fileID: 4811549221200363838, guid: 08008f579a6dfe84191a51323a92a523, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0055
+      value: 0.0017
       objectReference: {fileID: 0}
     - target: {fileID: 4811549221200363838, guid: 08008f579a6dfe84191a51323a92a523, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.0165
+      value: -0.0007
       objectReference: {fileID: 0}
     - target: {fileID: 4811549221200363838, guid: 08008f579a6dfe84191a51323a92a523, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1436,7 +1448,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.02, y: 0.02, z: 0}
+  m_Size: {x: 0.025, y: 0.025, z: 0}
   m_Center: {x: -0.006, y: 0, z: 0}
 --- !u!4 &1332879377 stripped
 Transform:
@@ -1892,8 +1904,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.02, y: 0.02, z: 0}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.025, y: 0.025, z: 0}
+  m_Center: {x: -0.006, y: 0, z: 0}
 --- !u!4 &1395448732 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 09f509cb0e297984cad61aa05311e0d5, type: 3}
@@ -2683,16 +2695,28 @@ PrefabInstance:
       value: FocusPoint
       objectReference: {fileID: 0}
     - target: {fileID: 4811549221200363838, guid: 08008f579a6dfe84191a51323a92a523, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4811549221200363838, guid: 08008f579a6dfe84191a51323a92a523, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4811549221200363838, guid: 08008f579a6dfe84191a51323a92a523, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4811549221200363838, guid: 08008f579a6dfe84191a51323a92a523, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.0085
       objectReference: {fileID: 0}
     - target: {fileID: 4811549221200363838, guid: 08008f579a6dfe84191a51323a92a523, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0066
+      value: -0.0004
       objectReference: {fileID: 0}
     - target: {fileID: 4811549221200363838, guid: 08008f579a6dfe84191a51323a92a523, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.0209
+      value: -0.0019
       objectReference: {fileID: 0}
     - target: {fileID: 4811549221200363838, guid: 08008f579a6dfe84191a51323a92a523, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3310,8 +3334,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.02, y: 0.02, z: 0}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.025, y: 0.025, z: 0}
+  m_Center: {x: -0.006, y: 0, z: 0}
 --- !u!4 &2112049711 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 09f509cb0e297984cad61aa05311e0d5, type: 3}
