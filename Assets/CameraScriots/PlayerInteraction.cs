@@ -9,8 +9,7 @@ public class PlayerInteraction : MonoBehaviour
 
     void Update()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame ||
-            Keyboard.current.eKey.wasPressedThisFrame)
+        if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             TryInteract();
         }
