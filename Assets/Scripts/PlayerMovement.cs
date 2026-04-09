@@ -1,29 +1,53 @@
 using UnityEngine;
 
-using UnityEngine;
-
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 5f;
     public float rotationSpeed = 10f;
 
+    private Rigidbody rb;
+    private Animator animator;
+    private Vector3 movement;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
+
+        if (rb == null)
+        {
+            Debug.LogError("Rigidbody is missing on the player!");
+        }
+
+        if (animator == null)
+        {
+            Debug.LogError("Animator is missing on the player!");
+        }
+    }
+
     void Update()
     {
-        float x = Input.GetAxisRaw("Horizontal");
-        float z = Input.GetAxisRaw("Vertical");
+        float moveX = Input.GetAxisRaw("Horizontal");
+        float moveZ = Input.GetAxisRaw("Vertical");
 
-        Vector3 move = new Vector3(x, 0f, z).normalized;
+        movement = new Vector3(moveX, 0f, moveZ).normalized;
 
-        transform.Translate(move * speed * Time.deltaTime, Space.World);
-
-        if (move != Vector3.zero)
+        if (animator != null)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(move);
-            transform.rotation = Quaternion.Slerp(
-                transform.rotation,
-                targetRotation,
-                rotationSpeed * Time.deltaTime
-            );
+            animator.SetBool("isWalking", movement.magnitude > 0.1f);
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (rb == null) return;
+
+        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+
+        if (movement != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(movement);
+            rb.rotation = Quaternion.Slerp(rb.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
         }
     }
 }
