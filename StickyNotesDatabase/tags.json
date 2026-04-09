@@ -1,0 +1,36 @@
+{
+    "Tags": [
+        {
+            "Tag": "Root",
+            "MainColor": {
+                "r": 1.0,
+                "g": 1.0,
+                "b": 1.0,
+                "a": 1.0
+            },
+            "SecondaryColor": {
+                "r": 0.4000000059604645,
+                "g": 0.4000000059604645,
+                "b": 0.4000000059604645,
+                "a": 1.0
+            },
+            "Description": "The root tag"
+        },
+        {
+            "Tag": "guide for color",
+            "MainColor": {
+                "r": 0.960784375667572,
+                "g": 0.960784375667572,
+                "b": 0.960784375667572,
+                "a": 1.0
+            },
+            "SecondaryColor": {
+                "r": 0.38431376218795779,
+                "g": 0.38431376218795779,
+                "b": 0.38431376218795779,
+                "a": 1.0
+            },
+            "Description": "first is red\nsecond is yellow \nthird is green\n "
+        }
+    ]
+}
