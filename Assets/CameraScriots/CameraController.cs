@@ -16,8 +16,6 @@ public class CameraController : MonoBehaviour
     public float maxHorizontalAngle = 30f;
     public float maxVerticalAngle = 20f;
 
-    public PlayerMovement PlayerMovement;
-
     private Vector3 offset;
     private Quaternion fixedRotation;
 
@@ -32,10 +30,15 @@ public class CameraController : MonoBehaviour
     private float currentYaw = 0f;
     private float currentPitch = 0f;
 
+    // Rigidbody for movement control
+    private Rigidbody playerRb;
+
     void Start()
     {
         fixedRotation = transform.rotation;
         offset = transform.position - player.position;
+
+        playerRb = player.GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -105,7 +108,9 @@ public class CameraController : MonoBehaviour
 
     public void EnterInteraction(Transform interactTarget)
     {
-        if (isInteracting) return; //  prevent double zoom
+
+
+        if (isInteracting) return;
 
         isInteracting = true;
         target = interactTarget;
@@ -113,12 +118,16 @@ public class CameraController : MonoBehaviour
         currentYaw = 0f;
         currentPitch = 0f;
 
-        //  Start puzzle
+        // Start puzzle
         PuzzleManager.Instance.StartPuzzle();
 
-        // Disable player movement
-        if (PlayerMovement != null)
-            PlayerMovement.enabled = false;
+        // Freeze player movement 
+        if (playerRb != null)
+        {
+            playerRb.linearVelocity = Vector3.zero;
+            playerRb.angularVelocity = Vector3.zero;
+            playerRb.constraints = RigidbodyConstraints.FreezeAll;
+        }
 
         Transform focus = target.Find("FocusPoint");
 
@@ -150,8 +159,11 @@ public class CameraController : MonoBehaviour
         currentYaw = 0f;
         currentPitch = 0f;
 
-        if (PlayerMovement != null)
-            PlayerMovement.enabled = true;
+        // Restore movement
+        if (playerRb != null)
+        {
+            playerRb.constraints = RigidbodyConstraints.FreezeRotation;
+        }
     }
 
     public bool IsInteracting()

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Switch : MonoBehaviour
 {
@@ -7,13 +6,11 @@ public class Switch : MonoBehaviour
     public GameObject lightObject;
     public SwitchPuzzle puzzle;
 
-    private bool isActivated = false;
+    private bool isOn = false;
 
     void Update()
     {
-        if (!PuzzleManager.Instance.IsActive()) return;
-
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (Input.GetMouseButtonDown(0))
         {
             TryClick();
         }
@@ -21,12 +18,12 @@ public class Switch : MonoBehaviour
 
     void TryClick()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, 100f))
         {
-            if (hit.collider.gameObject == this.gameObject && !isActivated)
+            if (hit.collider.gameObject == this.gameObject)
             {
                 Activate();
             }
@@ -35,17 +32,20 @@ public class Switch : MonoBehaviour
 
     void Activate()
     {
-        isActivated = true;
+        if (isOn) return;
+
+        isOn = true;
 
         if (lightObject != null)
             lightObject.SetActive(true);
 
-        puzzle.RegisterInput(switchIndex);
+        if (puzzle != null)
+            puzzle.RegisterInput(switchIndex);
     }
 
     public void ResetSwitch()
     {
-        isActivated = false;
+        isOn = false;
 
         if (lightObject != null)
             lightObject.SetActive(false);
