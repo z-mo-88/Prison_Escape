@@ -23,19 +23,21 @@ public class PlayerInteraction : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, 100f))
         {
+            // ONLY interact with objects that have Interactable
             Interactable interactable = hit.collider.GetComponent<Interactable>();
 
-            if (interactable != null)
-            {
-                float distance = Vector3.Distance(
-                    playerPoint.position,
-                    hit.collider.ClosestPoint(playerPoint.position)
-                );
+            if (interactable == null)
+                return;
 
-                if (distance <= interactDistance)
-                {
-                    cameraController.EnterInteraction(hit.transform);
-                }
+            // Distance check
+            float distance = Vector3.Distance(
+                playerPoint.position,
+                hit.collider.ClosestPoint(playerPoint.position)
+            );
+
+            if (distance <= interactDistance)
+            {
+                cameraController.EnterInteraction(hit.collider.transform.root);
             }
         }
     }

@@ -16,6 +16,8 @@ public class CameraController : MonoBehaviour
     public float maxHorizontalAngle = 30f;
     public float maxVerticalAngle = 20f;
 
+    public PlayerMovement PlayerMovement;
+
     private Vector3 offset;
     private Quaternion fixedRotation;
 
@@ -48,45 +50,37 @@ public class CameraController : MonoBehaviour
     {
         if (!isInteracting)
         {
-            // Follow player
             Vector3 desiredPos = player.position + offset;
             transform.position = Vector3.Lerp(transform.position, desiredPos, Time.deltaTime * smoothSpeed);
             transform.rotation = fixedRotation;
         }
         else
         {
+            HandleRotation();
+
             if (useFocusPoint)
             {
-                HandleRotation();
-
                 Quaternion rotationOffset = Quaternion.Euler(currentPitch, currentYaw, 0);
-
-                // Rotate around FocusPoint forward direction
                 Vector3 offsetDir = rotationOffset * (targetRotation * Vector3.back);
 
                 Vector3 desiredPos = targetPosition + offsetDir * zoomDistance;
 
                 transform.position = Vector3.Lerp(transform.position, desiredPos, Time.deltaTime * smoothSpeed);
 
-                // Always look at focus point
                 Quaternion lookRot = Quaternion.LookRotation(targetPosition - transform.position);
                 transform.rotation = Quaternion.Lerp(transform.rotation, lookRot, Time.deltaTime * smoothSpeed);
             }
             else
             {
-                HandleRotation();
-
                 Quaternion rotation = Quaternion.Euler(currentPitch, currentYaw, 0);
-
-                Vector3 center = targetPosition;
 
                 Vector3 offsetDir = rotation * Vector3.back;
 
-                Vector3 desiredPos = center + offsetDir * zoomDistance + Vector3.up * zoomHeight;
+                Vector3 desiredPos = targetPosition + offsetDir * zoomDistance + Vector3.up * zoomHeight;
 
                 transform.position = Vector3.Lerp(transform.position, desiredPos, Time.deltaTime * smoothSpeed);
 
-                Quaternion lookRot = Quaternion.LookRotation(center - transform.position);
+                Quaternion lookRot = Quaternion.LookRotation(targetPosition - transform.position);
                 transform.rotation = Quaternion.Lerp(transform.rotation, lookRot, Time.deltaTime * smoothSpeed);
             }
         }
@@ -97,41 +91,40 @@ public class CameraController : MonoBehaviour
         float inputX = 0f;
         float inputY = 0f;
 
-        
-        if (Keyboard.current.leftArrowKey.isPressed)
-            inputX = -1f;
-
-        if (Keyboard.current.rightArrowKey.isPressed)
-            inputX = 1f;
-
-        if (Keyboard.current.upArrowKey.isPressed)
-            inputY = 1f;
-
-        if (Keyboard.current.downArrowKey.isPressed)
-            inputY = -1f;
+        if (Keyboard.current.leftArrowKey.isPressed) inputX = -1f;
+        if (Keyboard.current.rightArrowKey.isPressed) inputX = 1f;
+        if (Keyboard.current.upArrowKey.isPressed) inputY = 1f;
+        if (Keyboard.current.downArrowKey.isPressed) inputY = -1f;
 
         currentYaw += inputX * rotationSpeed * Time.deltaTime;
         currentPitch -= inputY * rotationSpeed * Time.deltaTime;
 
-        // Limit rotation
         currentYaw = Mathf.Clamp(currentYaw, -maxHorizontalAngle, maxHorizontalAngle);
         currentPitch = Mathf.Clamp(currentPitch, -maxVerticalAngle, maxVerticalAngle);
     }
 
     public void EnterInteraction(Transform interactTarget)
     {
+        if (isInteracting) return; //  prevent double zoom
+
         isInteracting = true;
         target = interactTarget;
 
         currentYaw = 0f;
         currentPitch = 0f;
 
+        //  Start puzzle
+        PuzzleManager.Instance.StartPuzzle();
+
+        // Disable player movement
+        if (PlayerMovement != null)
+            PlayerMovement.enabled = false;
+
         Transform focus = target.Find("FocusPoint");
 
         if (focus != null)
         {
             useFocusPoint = true;
-
             targetPosition = focus.position;
             targetRotation = focus.rotation;
         }
@@ -153,6 +146,12 @@ public class CameraController : MonoBehaviour
         isInteracting = false;
         target = null;
         useFocusPoint = false;
+
+        currentYaw = 0f;
+        currentPitch = 0f;
+
+        if (PlayerMovement != null)
+            PlayerMovement.enabled = true;
     }
 
     public bool IsInteracting()
