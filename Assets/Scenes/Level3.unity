@@ -1257,8 +1257,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.6, y: 1.7, z: 0.7}
-  m_Center: {x: 0, y: 0.7, z: -0.09969552}
+  m_Size: {x: 0.7, y: 1.8, z: 1.2}
+  m_Center: {x: 0, y: 0.9, z: -0.09969552}
 --- !u!114 &370375448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1805,6 +1805,7 @@ GameObject:
   m_Component:
   - component: {fileID: 634488317}
   - component: {fileID: 634488318}
+  - component: {fileID: 634488319}
   m_Layer: 0
   m_Name: BoardLight
   m_TagString: Untagged
@@ -1892,6 +1893,35 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &634488319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634488316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_CustomShadowLayers: 0
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -3990,8 +4020,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 2.5, z: 0.5}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &1237310447
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4599,8 +4629,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0.5, z: 2.5}
+  m_Size: {x: 1, y: 1.2, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 2.3}
 --- !u!114 &1531848279
 MonoBehaviour:
   m_ObjectHideFlags: 0
