@@ -5,8 +5,17 @@ public class Switch : MonoBehaviour
     public int switchIndex;
     public GameObject lightObject;
     public SwitchPuzzle puzzle;
+    public CameraController cameraController;
 
     private bool isOn = false;
+
+    private static Switch activeSwitch = null;
+
+    void Start()
+    {
+        if (cameraController == null)
+            cameraController = Camera.main.GetComponent<CameraController>();
+    }
 
     void Update()
     {
@@ -23,7 +32,9 @@ public class Switch : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, 100f))
         {
-            if (hit.collider.gameObject == this.gameObject)
+            Switch clickedSwitch = hit.collider.GetComponentInParent<Switch>();
+
+            if (clickedSwitch != null && clickedSwitch == this)
             {
                 Activate();
             }
@@ -32,6 +43,15 @@ public class Switch : MonoBehaviour
 
     void Activate()
     {
+        if (!cameraController.IsInteracting())
+            return;
+
+        if (activeSwitch == null || activeSwitch != this)
+        {
+            activeSwitch = this;
+            return;
+        }
+
         if (isOn) return;
 
         isOn = true;
@@ -49,5 +69,9 @@ public class Switch : MonoBehaviour
 
         if (lightObject != null)
             lightObject.SetActive(false);
+
+        // clear active switch
+        if (activeSwitch == this)
+            activeSwitch = null;
     }
 }

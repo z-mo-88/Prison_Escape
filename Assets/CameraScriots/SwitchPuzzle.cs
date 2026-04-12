@@ -8,6 +8,8 @@ public class SwitchPuzzle : MonoBehaviour
     private List<int> playerInput = new List<int>();
 
     public Switch[] switches;
+    public GameObject hintGroup;
+    public CameraController cameraController;
 
     public void RegisterInput(int index)
     {
@@ -29,7 +31,21 @@ public class SwitchPuzzle : MonoBehaviour
             SolvePuzzle();
         }
     }
+    void Update()
+    {
+        if (cameraController == null || hintGroup == null) return;
 
+        if (cameraController.IsInteracting())
+        {
+            if (!hintGroup.activeSelf)
+                hintGroup.SetActive(true);
+        }
+        else
+        {
+            if (hintGroup.activeSelf)
+                hintGroup.SetActive(false);
+        }
+    }
     void SolvePuzzle()
     {
         Debug.Log("Puzzle Solved!");
