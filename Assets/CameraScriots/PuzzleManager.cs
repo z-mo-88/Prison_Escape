@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PuzzleManager : MonoBehaviour
 {
@@ -7,9 +7,11 @@ public class PuzzleManager : MonoBehaviour
     private bool isActive = false;
     private bool isSolved = false;
 
+    [Header("Door")]
+    public SlidingDoor door; // drag your door here
+
     void Awake()
     {
-      
         if (Instance == null)
             Instance = this;
         else
@@ -35,7 +37,15 @@ public class PuzzleManager : MonoBehaviour
 
         Debug.Log("Puzzle Solved!");
 
-      
+        // 🚪 OPEN DOOR
+        if (door != null)
+        {
+            door.OpenDoor();
+        }
+        else
+        {
+            Debug.LogWarning("Door is not assigned in PuzzleManager!");
+        }
     }
 
     // Called when player makes mistake

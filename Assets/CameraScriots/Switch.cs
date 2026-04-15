@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Switch : MonoBehaviour
@@ -7,14 +8,30 @@ public class Switch : MonoBehaviour
     public SwitchPuzzle puzzle;
     public CameraController cameraController;
 
-    private bool isOn = false;
+    [Header("Arm Movement")]
+    public Transform arm; // drag the Cube here
+    public float offRotation = -40f;
+    public float onRotation = -10f;
+    public float moveSpeed = 5f;
 
-    private static Switch activeSwitch = null;
+    private bool isOn = false;
+    private static Switch selectedSwitch = null;
 
     void Start()
     {
-        if (cameraController == null)
+        if (cameraController == null && Camera.main != null)
             cameraController = Camera.main.GetComponent<CameraController>();
+
+        if (lightObject != null)
+            lightObject.SetActive(false);
+
+        // Set initial OFF position
+        if (arm != null)
+        {
+            Vector3 rot = arm.localEulerAngles;
+            rot.x = offRotation;
+            arm.localEulerAngles = rot;
+        }
     }
 
     void Update()
@@ -27,6 +44,8 @@ public class Switch : MonoBehaviour
 
     void TryClick()
     {
+        if (Camera.main == null) return;
+
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
@@ -43,16 +62,18 @@ public class Switch : MonoBehaviour
 
     void Activate()
     {
-        if (!cameraController.IsInteracting())
+        if (cameraController != null && !cameraController.IsInteracting())
             return;
 
-        if (activeSwitch == null || activeSwitch != this)
+        // First click = select only
+        if (selectedSwitch != this)
         {
-            activeSwitch = this;
+            selectedSwitch = this;
             return;
         }
 
-        if (isOn) return;
+        if (isOn)
+            return;
 
         isOn = true;
 
@@ -61,6 +82,32 @@ public class Switch : MonoBehaviour
 
         if (puzzle != null)
             puzzle.RegisterInput(switchIndex);
+
+        // Move arm DOWN
+        if (arm != null)
+            StartCoroutine(MoveArm(onRotation));
+    }
+
+    IEnumerator MoveArm(float targetX)
+    {
+        while (true)
+        {
+            Vector3 current = arm.localEulerAngles;
+
+            float newX = Mathf.LerpAngle(current.x, targetX, Time.deltaTime * moveSpeed);
+
+            if (Mathf.Abs(Mathf.DeltaAngle(newX, targetX)) < 0.5f)
+            {
+                current.x = targetX;
+                arm.localEulerAngles = current;
+                break;
+            }
+
+            current.x = newX;
+            arm.localEulerAngles = current;
+
+            yield return null;
+        }
     }
 
     public void ResetSwitch()
@@ -70,8 +117,11 @@ public class Switch : MonoBehaviour
         if (lightObject != null)
             lightObject.SetActive(false);
 
-        // clear active switch
-        if (activeSwitch == this)
-            activeSwitch = null;
+        // Move arm UP (OFF)
+        if (arm != null)
+            StartCoroutine(MoveArm(offRotation));
+
+        if (selectedSwitch == this)
+            selectedSwitch = null;
     }
 }
