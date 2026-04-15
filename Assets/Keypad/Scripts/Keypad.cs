@@ -11,8 +11,12 @@ namespace NavKeypad
         [Header("Events")]
         [SerializeField] private UnityEvent onAccessGranted;
         [SerializeField] private UnityEvent onAccessDenied;
+
+        [Header("Level 5")]
+        [SerializeField] private Level5Manager level5Manager;
+
         [Header("Combination Code (9 Numbers Max)")]
-        [SerializeField] private int keypadCombo = 12345;
+        [SerializeField] private int keypadCombo = 981;
 
         public UnityEvent OnAccessGranted => onAccessGranted;
         public UnityEvent OnAccessDenied => onAccessDenied;
@@ -20,112 +24,176 @@ namespace NavKeypad
         [Header("Settings")]
         [SerializeField] private string accessGrantedText = "Granted";
         [SerializeField] private string accessDeniedText = "Denied";
+        [SerializeField] private string lockedText = "LOCKED";
 
         [Header("Visuals")]
         [SerializeField] private float displayResultTime = 1f;
         [Range(0, 5)]
         [SerializeField] private float screenIntensity = 2.5f;
+
         [Header("Colors")]
-        [SerializeField] private Color screenNormalColor = new Color(0.98f, 0.50f, 0.032f, 1f); //orangy
-        [SerializeField] private Color screenDeniedColor = new Color(1f, 0f, 0f, 1f); //red
-        [SerializeField] private Color screenGrantedColor = new Color(0f, 0.62f, 0.07f); //greenish
+        [SerializeField] private Color screenNormalColor = new Color(0.98f, 0.50f, 0.032f, 1f);
+        [SerializeField] private Color screenDeniedColor = new Color(1f, 0f, 0f, 1f);
+        [SerializeField] private Color screenGrantedColor = new Color(0f, 0.62f, 0.07f, 1f);
+        [SerializeField] private Color screenLockedColor = new Color(0.4f, 0.4f, 0.4f, 1f);
+
         [Header("SoundFx")]
         [SerializeField] private AudioClip buttonClickedSfx;
         [SerializeField] private AudioClip accessDeniedSfx;
         [SerializeField] private AudioClip accessGrantedSfx;
+
         [Header("Component References")]
         [SerializeField] private Renderer panelMesh;
         [SerializeField] private TMP_Text keypadDisplayText;
         [SerializeField] private AudioSource audioSource;
 
-
         private string currentInput;
         private bool displayingResult = false;
         private bool accessWasGranted = false;
+        private bool canUse = false;
 
         private void Awake()
         {
             ClearInput();
-            panelMesh.material.SetVector("_EmissionColor", screenNormalColor * screenIntensity);
+
+            if (panelMesh != null)
+                panelMesh.material.SetVector("_EmissionColor", screenLockedColor * screenIntensity);
+
+            if (keypadDisplayText != null)
+                keypadDisplayText.text = lockedText;
         }
 
+        public void UnlockKeypad()
+        {
+            canUse = true;
+            accessWasGranted = false;
+            displayingResult = false;
+            ClearInput();
 
-        //Gets value from pressedbutton
+            if (panelMesh != null)
+                panelMesh.material.SetVector("_EmissionColor", screenNormalColor * screenIntensity);
+        }
+
         public void AddInput(string input)
         {
-            audioSource.PlayOneShot(buttonClickedSfx);
-            if (displayingResult || accessWasGranted) return;
-            switch (input)
+            if (!canUse)
+            {
+                if (keypadDisplayText != null)
+                    keypadDisplayText.text = lockedText;
+
+                if (panelMesh != null)
+                    panelMesh.material.SetVector("_EmissionColor", screenLockedColor * screenIntensity);
+
+                return;
+            }
+
+            if (audioSource != null && buttonClickedSfx != null)
+                audioSource.PlayOneShot(buttonClickedSfx);
+
+            if (displayingResult || accessWasGranted)
+                return;
+
+            switch (input.ToLower())
             {
                 case "enter":
                     CheckCombo();
                     break;
+
                 default:
-                    if (currentInput != null && currentInput.Length == 9) // 9 max passcode size 
-                    {
+                    if (currentInput != null && currentInput.Length >= 9)
                         return;
-                    }
+
                     currentInput += input;
-                    keypadDisplayText.text = currentInput;
+
+                    if (keypadDisplayText != null)
+                        keypadDisplayText.text = currentInput;
                     break;
             }
-
         }
+
         public void CheckCombo()
         {
-            if (int.TryParse(currentInput, out var currentKombo))
+            if (!canUse)
             {
-                bool granted = currentKombo == keypadCombo;
+                if (keypadDisplayText != null)
+                    keypadDisplayText.text = lockedText;
+                return;
+            }
+
+            if (int.TryParse(currentInput, out var currentCombo))
+            {
+                bool granted = currentCombo == keypadCombo;
+
                 if (!displayingResult)
-                {
                     StartCoroutine(DisplayResultRoutine(granted));
-                }
             }
             else
             {
-                Debug.LogWarning("Couldn't process input for some reason..");
+                Debug.LogWarning("Couldn't process input for some reason.");
             }
-
         }
 
-        //mainly for animations 
         private IEnumerator DisplayResultRoutine(bool granted)
         {
             displayingResult = true;
 
-            if (granted) AccessGranted();
-            else AccessDenied();
+            if (granted)
+                AccessGranted();
+            else
+                AccessDenied();
 
             yield return new WaitForSeconds(displayResultTime);
-            displayingResult = false;
-            if (granted) yield break;
-            ClearInput();
-            panelMesh.material.SetVector("_EmissionColor", screenNormalColor * screenIntensity);
 
+            displayingResult = false;
+
+            if (granted)
+                yield break;
+
+            ClearInput();
+
+            if (panelMesh != null)
+                panelMesh.material.SetVector("_EmissionColor", screenNormalColor * screenIntensity);
         }
 
         private void AccessDenied()
         {
-            keypadDisplayText.text = accessDeniedText;
+            if (keypadDisplayText != null)
+                keypadDisplayText.text = accessDeniedText;
+
             onAccessDenied?.Invoke();
-            panelMesh.material.SetVector("_EmissionColor", screenDeniedColor * screenIntensity);
-            audioSource.PlayOneShot(accessDeniedSfx);
+
+            if (panelMesh != null)
+                panelMesh.material.SetVector("_EmissionColor", screenDeniedColor * screenIntensity);
+
+            if (audioSource != null && accessDeniedSfx != null)
+                audioSource.PlayOneShot(accessDeniedSfx);
         }
 
         private void ClearInput()
         {
             currentInput = "";
-            keypadDisplayText.text = currentInput;
+
+            if (keypadDisplayText != null)
+                keypadDisplayText.text = currentInput;
         }
 
         private void AccessGranted()
         {
             accessWasGranted = true;
-            keypadDisplayText.text = accessGrantedText;
-            onAccessGranted?.Invoke();
-            panelMesh.material.SetVector("_EmissionColor", screenGrantedColor * screenIntensity);
-            audioSource.PlayOneShot(accessGrantedSfx);
-        }
 
+            if (keypadDisplayText != null)
+                keypadDisplayText.text = accessGrantedText;
+
+            onAccessGranted?.Invoke();
+
+            if (panelMesh != null)
+                panelMesh.material.SetVector("_EmissionColor", screenGrantedColor * screenIntensity);
+
+            if (audioSource != null && accessGrantedSfx != null)
+                audioSource.PlayOneShot(accessGrantedSfx);
+
+            if (level5Manager != null)
+                level5Manager.KeypadSolved();
+        }
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SlidingDoor : MonoBehaviour
 {
-    public Vector3 openOffset = new Vector3(-2f, 0f, 0f); // slide left
+    public Vector3 openOffset = new Vector3(-3.5f, 0f, 0f);
     public float speed = 2f;
 
     private Vector3 closedPosition;
