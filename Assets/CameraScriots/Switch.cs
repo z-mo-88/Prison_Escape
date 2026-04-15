@@ -3,13 +3,17 @@ using UnityEngine;
 
 public class Switch : MonoBehaviour
 {
+
+    [Header("Sound")]
+    public AudioSource audioSource;
+    public AudioClip clickSound;
     public int switchIndex;
     public GameObject lightObject;
     public SwitchPuzzle puzzle;
     public CameraController cameraController;
 
     [Header("Arm Movement")]
-    public Transform arm; // drag the Cube here
+    public Transform arm; 
     public float offRotation = -40f;
     public float onRotation = -10f;
     public float moveSpeed = 5f;
@@ -19,6 +23,9 @@ public class Switch : MonoBehaviour
 
     void Start()
     {
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
+
         if (cameraController == null && Camera.main != null)
             cameraController = Camera.main.GetComponent<CameraController>();
 
@@ -49,7 +56,7 @@ public class Switch : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, 100f))
+        if (Physics.SphereCast(ray, 0.2f, out hit, 100f))
         {
             Switch clickedSwitch = hit.collider.GetComponentInParent<Switch>();
 
@@ -65,17 +72,24 @@ public class Switch : MonoBehaviour
         if (cameraController != null && !cameraController.IsInteracting())
             return;
 
-        // First click = select only
+        
         if (selectedSwitch != this)
         {
             selectedSwitch = this;
             return;
         }
 
+        
         if (isOn)
             return;
 
         isOn = true;
+
+      
+        if (audioSource != null && clickSound != null)
+        {
+            audioSource.PlayOneShot(clickSound);
+        }
 
         if (lightObject != null)
             lightObject.SetActive(true);

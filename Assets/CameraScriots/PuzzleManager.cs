@@ -8,7 +8,7 @@ public class PuzzleManager : MonoBehaviour
     private bool isSolved = false;
 
     [Header("Door")]
-    public SlidingDoor door; // drag your door here
+    public SlidingDoor door; 
 
     void Awake()
     {
@@ -37,7 +37,7 @@ public class PuzzleManager : MonoBehaviour
 
         Debug.Log("Puzzle Solved!");
 
-        // 🚪 OPEN DOOR
+        // OPEN DOOR
         if (door != null)
         {
             door.OpenDoor();

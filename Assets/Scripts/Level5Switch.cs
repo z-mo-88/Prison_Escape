@@ -2,11 +2,16 @@ using UnityEngine;
 
 public class Level5Switch : MonoBehaviour
 {
+
+    [Header("Sound")]
+    public AudioSource audioSource;
+    public AudioClip clickSound;
     public int switchIndex;
     public bool isCorrectSwitch;
     public GameObject lightObject;
     public Level5SwitchPuzzle puzzle;
     public CameraController cameraController;
+    private static Level5Switch selectedSwitch = null;
 
     [Header("Arm")]
     public Transform arm;
@@ -57,7 +62,18 @@ public class Level5Switch : MonoBehaviour
         if (cameraController != null && !cameraController.IsInteracting())
             return;
 
+        if (selectedSwitch != this)
+        {
+            selectedSwitch = this;
+            return;
+        }
+
         isOn = !isOn;
+
+        if (audioSource != null && clickSound != null)
+        {
+            audioSource.PlayOneShot(clickSound);
+        }
 
         if (isOn)
         {
@@ -74,7 +90,7 @@ public class Level5Switch : MonoBehaviour
                 lightObject.SetActive(false);
         }
 
-        // Wrong switch resets the correct switches
+        // Wrong switch resets correct ones
         if (!isCorrectSwitch)
         {
             if (puzzle != null)
