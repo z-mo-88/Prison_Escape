@@ -33,7 +33,11 @@ namespace NavKeypad
 
         void TryClick()
         {
-            if (Camera.main == null) return;
+            if (Camera.main == null)
+            {
+                Debug.LogWarning("Main Camera not found.");
+                return;
+            }
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -51,12 +55,6 @@ namespace NavKeypad
         {
             if (moving) return;
 
-            if (cameraController != null && !cameraController.IsInteracting())
-            {
-                Debug.LogWarning("Keypad button blocked because camera is not interacting: " + gameObject.name);
-                return;
-            }
-
             if (keypad == null)
             {
                 Debug.LogWarning("Keypad reference is missing on button: " + gameObject.name);
@@ -70,7 +68,6 @@ namespace NavKeypad
             }
 
             keypad.AddInput(value.Trim().ToLower());
-
             StartCoroutine(MoveSmooth());
         }
 

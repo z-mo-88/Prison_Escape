@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -54,6 +53,9 @@ namespace NavKeypad
 
         private void Awake()
         {
+            canUse = false;
+            accessWasGranted = false;
+            displayingResult = false;
             ClearInput();
 
             if (panelMesh != null)
@@ -72,6 +74,9 @@ namespace NavKeypad
 
             if (panelMesh != null)
                 panelMesh.material.SetVector("_EmissionColor", screenNormalColor * screenIntensity);
+
+            if (keypadDisplayText != null)
+                keypadDisplayText.text = "";
         }
 
         public void AddInput(string input)
@@ -99,6 +104,13 @@ namespace NavKeypad
                     CheckCombo();
                     break;
 
+                case "clear":
+                    ClearInput();
+
+                    if (panelMesh != null)
+                        panelMesh.material.SetVector("_EmissionColor", screenNormalColor * screenIntensity);
+                    break;
+
                 default:
                     if (currentInput != null && currentInput.Length >= 9)
                         return;
@@ -117,6 +129,7 @@ namespace NavKeypad
             {
                 if (keypadDisplayText != null)
                     keypadDisplayText.text = lockedText;
+
                 return;
             }
 
@@ -173,7 +186,7 @@ namespace NavKeypad
         {
             currentInput = "";
 
-            if (keypadDisplayText != null)
+            if (keypadDisplayText != null && canUse)
                 keypadDisplayText.text = currentInput;
         }
 
