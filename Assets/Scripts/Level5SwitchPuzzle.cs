@@ -8,6 +8,16 @@ public class Level5SwitchPuzzle : MonoBehaviour
     private int correctOnCount = 0;
     private bool isSolved = false;
 
+    [Header("Sound")]
+    public AudioSource audioSource;
+    public AudioClip resetSound;
+
+    void Start()
+    {
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
+    }
+
     public void RecountAndCheck()
     {
         correctOnCount = 0;
@@ -42,6 +52,12 @@ public class Level5SwitchPuzzle : MonoBehaviour
     {
         correctOnCount = 0;
         isSolved = false;
+
+        // RESET SOUND
+        if (audioSource != null && resetSound != null)
+        {
+            audioSource.PlayOneShot(resetSound);
+        }
 
         foreach (Level5Switch sw in allSwitches)
         {
