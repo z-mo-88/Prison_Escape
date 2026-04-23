@@ -2,18 +2,31 @@ using UnityEngine;
 
 public class KeyPickup : MonoBehaviour
 {
-    public Transform holdPoint;        // KeyHoldPoint (in hand)
-    public GameObject player;          // The prisoner
-    public KeyInventory inventory;     // Player inventory
+    public Transform holdPoint;
+    public GameObject player;
+    public KeyInventory inventory;
+
+    public CameraController cameraController;
 
     private bool playerNear = false;
     private bool picked = false;
 
+    void Start()
+    {
+        // Auto assign camera
+        if (cameraController == null && Camera.main != null)
+            cameraController = Camera.main.GetComponent<CameraController>();
+    }
+
     void Update()
     {
+        //  ADD zoom condition
         if (playerNear && !picked && Input.GetKeyDown(KeyCode.E))
         {
-            PickKey();
+            if (cameraController != null && cameraController.IsInteracting())
+            {
+                PickKey();
+            }
         }
     }
 

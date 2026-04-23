@@ -6,10 +6,16 @@ public class DoorOpenWithKey : MonoBehaviour
     public KeyInventory inventory;
 
     public float slideDistance = 3f;
-    public float slideSpeed = 2f;
+    public float slideSpeed = 1f;
+
+    [Header("Sound")]
+    public AudioSource audioSource;
+    public AudioClip openSound;
 
     private bool playerNear = false;
     private bool opening = false;
+    private bool soundPlayed = false; 
+
     private Vector3 closedPosition;
     private Vector3 openPosition;
 
@@ -17,15 +23,31 @@ public class DoorOpenWithKey : MonoBehaviour
     {
         closedPosition = transform.position;
         openPosition = closedPosition + Vector3.left * slideDistance;
+
+       
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
+        
         if (playerNear && inventory != null && inventory.hasKey)
         {
-            opening = true;
+            if (!opening)
+            {
+                opening = true;
+
+              
+                if (!soundPlayed && audioSource != null && openSound != null)
+                {
+                    audioSource.PlayOneShot(openSound);
+                    soundPlayed = true;
+                }
+            }
         }
 
+        
         if (opening)
         {
             transform.position = Vector3.MoveTowards(
