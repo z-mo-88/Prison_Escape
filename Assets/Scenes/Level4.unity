@@ -197,6 +197,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6255788642606812997, guid: daf2373191f72344c910c7bf5ad6feab, type: 3}
   m_PrefabInstance: {fileID: 1054999449}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &260212348 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e430e81b335b314498fff562349013cc, type: 3}
+  m_PrefabInstance: {fileID: 960997978}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &260212349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260212348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1522950c685a7c5468ec7ba06b6f5f05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PuzzleButton
+  buttonColor: 
+  manager: {fileID: 0}
 --- !u!1001 &295094309
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -518,6 +537,44 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0f798499730cfd48b88e935d9d1aba1, type: 3}
+--- !u!1 &726843858 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e430e81b335b314498fff562349013cc, type: 3}
+  m_PrefabInstance: {fileID: 2091504971}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &726843859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 726843858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1522950c685a7c5468ec7ba06b6f5f05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PuzzleButton
+  buttonColor: 
+  manager: {fileID: 0}
+--- !u!1 &760595052 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e430e81b335b314498fff562349013cc, type: 3}
+  m_PrefabInstance: {fileID: 1076308329}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &760595053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 760595052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1522950c685a7c5468ec7ba06b6f5f05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PuzzleButton
+  buttonColor: 
+  manager: {fileID: 0}
 --- !u!1 &902557783
 GameObject:
   m_ObjectHideFlags: 0
@@ -630,6 +687,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &954731963 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -409528506165048950, guid: f7f8b9d74220b924a806ad92ee77413f, type: 3}
+  m_PrefabInstance: {fileID: 129982403}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &960997978
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -696,7 +758,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 53e29cd9e80d93043a11255cd8a8890d, type: 2}
     - target: {fileID: 919132149155446097, guid: e430e81b335b314498fff562349013cc, type: 3}
       propertyPath: m_Name
-      value: Button (1)
+      value: blue
       objectReference: {fileID: 0}
     - target: {fileID: 5074512353664290214, guid: e430e81b335b314498fff562349013cc, type: 3}
       propertyPath: m_DirtyAABB
@@ -730,6 +792,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e430e81b335b314498fff562349013cc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 260212349}
     - targetCorrespondingSourceObject: {fileID: -5568371526223589888, guid: e430e81b335b314498fff562349013cc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1665505942}
@@ -980,7 +1045,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 53e29cd9e80d93043a11255cd8a8890d, type: 2}
     - target: {fileID: 919132149155446097, guid: e430e81b335b314498fff562349013cc, type: 3}
       propertyPath: m_Name
-      value: Button (2)
+      value: green
       objectReference: {fileID: 0}
     - target: {fileID: 5074512353664290214, guid: e430e81b335b314498fff562349013cc, type: 3}
       propertyPath: m_DirtyAABB
@@ -1017,6 +1082,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1396856741}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e430e81b335b314498fff562349013cc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 760595053}
     - targetCorrespondingSourceObject: {fileID: -5568371526223589888, guid: e430e81b335b314498fff562349013cc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1687643429}
@@ -1441,6 +1509,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86967d4bbb677c147b0dcaf94e6c64c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonClick
+--- !u!1 &1490973306
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1490973308}
+  - component: {fileID: 1490973307}
+  m_Layer: 0
+  m_Name: PuzzleManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1490973307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1490973306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2a34ae886873e34785a1304bdfe33fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonPuzzleManager
+  redButton: {fileID: 726843859}
+  greenButton: {fileID: 760595053}
+  blueButton: {fileID: 260212349}
+  door: {fileID: 954731963}
+  openRotation: {x: 0, y: 90, z: 0}
+--- !u!4 &1490973308
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1490973306}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.67338, y: 2.89259, z: 0.2307}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1540452358
 GameObject:
   m_ObjectHideFlags: 0
@@ -2212,7 +2329,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 53e29cd9e80d93043a11255cd8a8890d, type: 2}
     - target: {fileID: 919132149155446097, guid: e430e81b335b314498fff562349013cc, type: 3}
       propertyPath: m_Name
-      value: Button
+      value: red
       objectReference: {fileID: 0}
     - target: {fileID: 5074512353664290214, guid: e430e81b335b314498fff562349013cc, type: 3}
       propertyPath: m_DirtyAABB
@@ -2246,6 +2363,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e430e81b335b314498fff562349013cc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 726843859}
     - targetCorrespondingSourceObject: {fileID: -5568371526223589888, guid: e430e81b335b314498fff562349013cc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1440908821}
@@ -2279,3 +2399,4 @@ SceneRoots:
   - {fileID: 1076308329}
   - {fileID: 1915726036}
   - {fileID: 1412670782}
+  - {fileID: 1490973308}
