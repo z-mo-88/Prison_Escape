@@ -1,8 +1,13 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Level5Manager : MonoBehaviour
 {
     public SlidingDoor door;
+
+    [Header("Win Settings")]
+    public float winDelay = 5f;
 
     private bool switchSolved = false;
     private bool keypadSolved = false;
@@ -34,6 +39,19 @@ public class Level5Manager : MonoBehaviour
                 door.OpenDoor();
             else
                 Debug.LogWarning("Door is not assigned in Level5Manager.");
+
+            GameTimer timer = FindFirstObjectByType<GameTimer>();
+            if (timer != null)
+                timer.timerRunning = false;
+
+            StartCoroutine(LoadWinScreen());
         }
+    }
+
+    IEnumerator LoadWinScreen()
+    {
+        yield return new WaitForSeconds(winDelay);
+
+        SceneManager.LoadScene("WinScreen");
     }
 }

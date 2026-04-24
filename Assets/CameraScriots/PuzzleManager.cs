@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class PuzzleManager : MonoBehaviour
 {
@@ -35,6 +37,9 @@ public class PuzzleManager : MonoBehaviour
         isSolved = true;
         isActive = false;
 
+        int score = FindFirstObjectByType<GameTimer>().GetScore();
+        Debug.Log("Score: " + score);
+
         Debug.Log("Puzzle Solved!");
 
         // OPEN DOOR
@@ -46,6 +51,15 @@ public class PuzzleManager : MonoBehaviour
         {
             Debug.LogWarning("Door is not assigned in PuzzleManager!");
         }
+
+        StartCoroutine(LoadWinScreen());
+    }
+
+    IEnumerator LoadWinScreen()
+    {
+        yield return new WaitForSeconds(5f);
+
+        SceneManager.LoadScene("WinScreen");
     }
 
     // Called when player makes mistake

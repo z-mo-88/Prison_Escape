@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class DoorOpenWithKey : MonoBehaviour
 {
@@ -11,6 +13,10 @@ public class DoorOpenWithKey : MonoBehaviour
     [Header("Sound")]
     public AudioSource audioSource;
     public AudioClip openSound;
+
+    [Header("Win")]
+    public float winDelay = 5f;
+    
 
     private bool playerNear = false;
     private bool opening = false;
@@ -55,7 +61,22 @@ public class DoorOpenWithKey : MonoBehaviour
                 openPosition,
                 slideSpeed * Time.deltaTime
             );
+
+            opening = true;
+
+           
+            GameTimer timer = FindFirstObjectByType<GameTimer>();
+            if (timer != null)
+                timer.timerRunning = false;
+
+            StartCoroutine(LoadWinScreen());
         }
+    }
+
+    IEnumerator LoadWinScreen()
+    {
+        yield return new WaitForSeconds(winDelay);
+        SceneManager.LoadScene("WinScreen");
     }
 
     private void OnTriggerEnter(Collider other)
