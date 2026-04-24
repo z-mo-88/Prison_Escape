@@ -7,7 +7,7 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: f54aef365ff867843bd3593bca22047a
@@ -23,6 +23,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: 332e0939911c2794d8974c294bdbf0bd
+  - enabled: 1
+    path: Assets/Scenes/WinScreen.unity
+    guid: 2eb62a78481d9b84d845ecd6a519a4a1
+  - enabled: 1
+    path: Assets/Scenes/loseScreen.unity
+    guid: 218710a0f4e36aa4f893c2fdd5e23a5b
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 289c1b55c9541489481df5cc06664110, type: 3}
   m_UseUCBPForAssetBundles: 0

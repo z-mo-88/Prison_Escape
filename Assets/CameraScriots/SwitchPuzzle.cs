@@ -11,11 +11,21 @@ public class SwitchPuzzle : MonoBehaviour
     public GameObject hintGroup;
     public CameraController cameraController;
 
+    [Header("Sound")]
+    public AudioSource audioSource;
+    public AudioClip resetSound;
+
+    void Start()
+    {
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
+    }
+
     public void RegisterInput(int index)
     {
         playerInput.Add(index);
 
-        // check sequence step-by-step
+        // check sequence 
         for (int i = 0; i < playerInput.Count; i++)
         {
             if (playerInput[i] != correctSequence[i])
@@ -57,7 +67,13 @@ public class SwitchPuzzle : MonoBehaviour
 
     IEnumerator ResetWithDelay()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.6f);
+
+        // PLAY RESET SOUND 
+        if (audioSource != null && resetSound != null)
+        {
+            audioSource.PlayOneShot(resetSound);
+        }
 
         playerInput.Clear();
 

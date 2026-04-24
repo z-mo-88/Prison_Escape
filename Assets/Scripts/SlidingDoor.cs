@@ -4,7 +4,7 @@ using UnityEngine;
 public class SlidingDoor : MonoBehaviour
 {
     public Vector3 openOffset = new Vector3(-3.5f, 0f, 0f);
-    public float speed = 2f;
+    public float speed = 1f;
 
     [Header("Sound")]
     public AudioSource audioSource;
