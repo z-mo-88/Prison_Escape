@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ButtonPuzzleManager : MonoBehaviour
 {
@@ -10,6 +12,9 @@ public class ButtonPuzzleManager : MonoBehaviour
     public Vector3 openRotation = new Vector3(0f, 90f, 0f);
 
     public bool powerOn = false;
+
+    [Header("Win Settings")]
+    public float winDelay = 2f;
 
     private int currentStep = 0;
     private bool puzzleSolved = false;
@@ -49,17 +54,36 @@ public class ButtonPuzzleManager : MonoBehaviour
     void OpenDoor()
     {
         puzzleSolved = true;
-        door.rotation = Quaternion.Euler(openRotation);
+
+        //  Open door
+        if (door != null)
+            door.rotation = Quaternion.Euler(openRotation);
+
         Debug.Log("Door Opened");
     }
 
+        // STOP TIMER
+      /*  GameTimer timer = FindFirstObjectByType<GameTimer>();
+        if (timer != null)
+            timer.timerRunning = false;
+      
+        //  LOAD WIN SCREEN
+        StartCoroutine(LoadWinScreen());
+    }
+
+    IEnumerator LoadWinScreen()
+    {
+        yield return new WaitForSeconds(winDelay);
+        SceneManager.LoadScene("WinScreen");
+    }
+      */
     public void ResetPuzzle()
     {
         currentStep = 0;
 
-        redButton.TurnOff();
-        greenButton.TurnOff();
-        blueButton.TurnOff();
+        if (redButton != null) redButton.TurnOff();
+        if (greenButton != null) greenButton.TurnOff();
+        if (blueButton != null) blueButton.TurnOff();
 
         Debug.Log("Puzzle Reset");
     }
