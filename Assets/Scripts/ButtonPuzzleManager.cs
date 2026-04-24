@@ -9,11 +9,19 @@ public class ButtonPuzzleManager : MonoBehaviour
     public Transform door;
     public Vector3 openRotation = new Vector3(0f, 90f, 0f);
 
+    public bool powerOn = false;
+
     private int currentStep = 0;
     private bool puzzleSolved = false;
 
     public void PressButton(string buttonColor)
     {
+        if (!powerOn)
+        {
+            Debug.Log("Power is OFF");
+            return;
+        }
+
         if (puzzleSolved) return;
 
         if (currentStep == 0 && buttonColor == "Red")
@@ -42,10 +50,10 @@ public class ButtonPuzzleManager : MonoBehaviour
     {
         puzzleSolved = true;
         door.rotation = Quaternion.Euler(openRotation);
-        Debug.Log("Door opened!");
+        Debug.Log("Door Opened");
     }
 
-    void ResetPuzzle()
+    public void ResetPuzzle()
     {
         currentStep = 0;
 
@@ -53,6 +61,6 @@ public class ButtonPuzzleManager : MonoBehaviour
         greenButton.TurnOff();
         blueButton.TurnOff();
 
-        Debug.Log("Wrong order! Reset.");
+        Debug.Log("Puzzle Reset");
     }
 }

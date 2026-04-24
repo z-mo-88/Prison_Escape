@@ -5,7 +5,7 @@ public class PuzzleButton : MonoBehaviour
     public string buttonColor;
     public ButtonPuzzleManager manager;
 
-    private Renderer rend;
+    Renderer rend;
 
     void Start()
     {
@@ -21,7 +21,15 @@ public class PuzzleButton : MonoBehaviour
     public void TurnOn()
     {
         rend.material.EnableKeyword("_EMISSION");
-        rend.material.SetColor("_EmissionColor", Color.white * 5f);
+
+        if (buttonColor == "Red")
+            rend.material.SetColor("_EmissionColor", Color.red * 5f);
+
+        if (buttonColor == "Green")
+            rend.material.SetColor("_EmissionColor", Color.green * 5f);
+
+        if (buttonColor == "Blue")
+            rend.material.SetColor("_EmissionColor", Color.blue * 5f);
     }
 
     public void TurnOff()
