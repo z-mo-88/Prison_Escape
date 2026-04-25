@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ButtonPuzzleManager : MonoBehaviour
 {
@@ -7,8 +9,12 @@ public class ButtonPuzzleManager : MonoBehaviour
     public PuzzleButtonLevel4 blueButton;
 
     public SlidingDoorLevel4 door;
+    public PowerHandle powerHandle;
 
     public bool powerOn = false;
+
+    [Header("Win Settings")]
+    public float winDelay = 2f;
 
     private int currentStep = 0;
     private bool puzzleSolved = false;
@@ -18,14 +24,14 @@ public class ButtonPuzzleManager : MonoBehaviour
         powerOn = true;
         ResetPuzzle();
 
-        Debug.Log("Power ON - Buttons are ready");
+        Debug.Log("Power ON - Buttons ready");
     }
 
     public void PressButton(string color)
     {
         if (!powerOn || puzzleSolved) return;
 
-        // First button must be Green
+        // STEP 0 → GREEN
         if (currentStep == 0)
         {
             if (color == "Green")
@@ -33,11 +39,14 @@ public class ButtonPuzzleManager : MonoBehaviour
                 greenButton.TurnOn();
                 currentStep = 1;
             }
-
-            return; // Red or Blue first = nothing happens
+            else
+            {
+                StartCoroutine(ResetWithDelay());
+            }
+            return;
         }
 
-        // Second button must be Red
+        // STEP 1 → RED
         if (currentStep == 1)
         {
             if (color == "Red")
@@ -47,13 +56,12 @@ public class ButtonPuzzleManager : MonoBehaviour
             }
             else
             {
-                ResetPuzzle(); // Green then wrong button = all off
+                StartCoroutine(ResetWithDelay());
             }
-
             return;
         }
 
-        // Third button must be Blue
+        // STEP 2 → BLUE
         if (currentStep == 2)
         {
             if (color == "Blue")
@@ -64,19 +72,47 @@ public class ButtonPuzzleManager : MonoBehaviour
             }
             else
             {
-                ResetPuzzle();
+                StartCoroutine(ResetWithDelay());
             }
         }
     }
 
-    private void OpenDoor()
+    void OpenDoor()
     {
         puzzleSolved = true;
 
         if (door != null)
             door.OpenDoor();
 
-        Debug.Log("Correct order - Door opened");
+        Debug.Log("Puzzle Solved!");
+
+        GameTimer timer = FindFirstObjectByType<GameTimer>();
+        if (timer != null)
+            timer.timerRunning = false;
+
+        StartCoroutine(LoadWinScreen());
+    }
+
+    IEnumerator LoadWinScreen()
+    {
+        yield return new WaitForSeconds(winDelay);
+        SceneManager.LoadScene("WinScreen");
+    }
+
+    IEnumerator ResetWithDelay()
+    {
+        yield return new WaitForSeconds(0.6f);
+
+        currentStep = 0;
+
+        greenButton.TurnOff();
+        redButton.TurnOff();
+        blueButton.TurnOff();
+
+        if (powerHandle != null)
+            powerHandle.ResetHandle();
+
+        Debug.Log("Wrong → Reset ALL");
     }
 
     public void ResetPuzzle()
@@ -86,7 +122,5 @@ public class ButtonPuzzleManager : MonoBehaviour
         if (greenButton != null) greenButton.TurnOff();
         if (redButton != null) redButton.TurnOff();
         if (blueButton != null) blueButton.TurnOff();
-
-        Debug.Log("Wrong order - All buttons turned off");
     }
 }
