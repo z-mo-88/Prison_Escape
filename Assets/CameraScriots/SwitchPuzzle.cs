@@ -25,22 +25,36 @@ public class SwitchPuzzle : MonoBehaviour
     {
         playerInput.Add(index);
 
-        // check sequence 
-        for (int i = 0; i < playerInput.Count; i++)
+        // ONLY CHECK AFTER FULL INPUT
+        if (playerInput.Count == correctSequence.Count)
+        {
+            CheckSequence();
+        }
+    }
+
+    void CheckSequence()
+    {
+        bool isCorrect = true;
+
+        for (int i = 0; i < correctSequence.Count; i++)
         {
             if (playerInput[i] != correctSequence[i])
             {
-                StartCoroutine(ResetWithDelay());
-                return;
+                isCorrect = false;
+                break;
             }
         }
 
-        // correct full sequence
-        if (playerInput.Count == correctSequence.Count)
+        if (isCorrect)
         {
             SolvePuzzle();
         }
+        else
+        {
+            StartCoroutine(ResetWithDelay());
+        }
     }
+
     void Update()
     {
         if (cameraController == null || hintGroup == null) return;
@@ -56,6 +70,7 @@ public class SwitchPuzzle : MonoBehaviour
                 hintGroup.SetActive(false);
         }
     }
+
     void SolvePuzzle()
     {
         Debug.Log("Puzzle Solved!");
@@ -67,9 +82,10 @@ public class SwitchPuzzle : MonoBehaviour
 
     IEnumerator ResetWithDelay()
     {
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(0.8f);
+        audioSource.PlayOneShot(resetSound);
 
-        // PLAY RESET SOUND 
+      
         if (audioSource != null && resetSound != null)
         {
             audioSource.PlayOneShot(resetSound);
