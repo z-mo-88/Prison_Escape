@@ -20,12 +20,12 @@ RenderSettings:
   m_FogDensity: 0.046
   m_LinearFogStart: 11
   m_LinearFogEnd: 40
-  m_AmbientSkyColor: {r: 0.21698111, g: 0.13992523, b: 0.10337308, a: 1}
+  m_AmbientSkyColor: {r: 0.3, g: 0.3, b: 0.3, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 3
-  m_SubtractiveShadowColor: {r: 0, g: 0, b: 0, a: 1}
+  m_SubtractiveShadowColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.276
   m_FlareStrength: 1
@@ -1088,6 +1088,63 @@ MonoBehaviour:
   buttonPressedTime: 0.1
   keypad: {fileID: 1668073111}
   cameraController: {fileID: 963194229}
+--- !u!1001 &675335009
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6209718425055080826, guid: e0ef0078cebd2d24489513780ea2b45c, type: 3}
+      propertyPath: m_Name
+      value: Light_11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730219170030119872, guid: e0ef0078cebd2d24489513780ea2b45c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730219170030119872, guid: e0ef0078cebd2d24489513780ea2b45c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730219170030119872, guid: e0ef0078cebd2d24489513780ea2b45c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730219170030119872, guid: e0ef0078cebd2d24489513780ea2b45c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.021455575
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730219170030119872, guid: e0ef0078cebd2d24489513780ea2b45c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7067812
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730219170030119872, guid: e0ef0078cebd2d24489513780ea2b45c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7067812
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730219170030119872, guid: e0ef0078cebd2d24489513780ea2b45c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.021455595
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730219170030119872, guid: e0ef0078cebd2d24489513780ea2b45c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 3.478
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730219170030119872, guid: e0ef0078cebd2d24489513780ea2b45c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730219170030119872, guid: e0ef0078cebd2d24489513780ea2b45c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e0ef0078cebd2d24489513780ea2b45c, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1116,8 +1173,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 12
   m_Type: 1
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 0.6855345, g: 0.6837993, b: 0.67906713, a: 1}
+  m_Intensity: 0.2
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -3355,6 +3412,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 870263132532450945, guid: ad8fc975b7237c34fa4345155b2a556d, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: fe90f061fce4c374cb64739213c21f73, type: 2}
     - target: {fileID: 4490614256988970699, guid: ad8fc975b7237c34fa4345155b2a556d, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -4367,3 +4428,4 @@ SceneRoots:
   - {fileID: 182951136}
   - {fileID: 1880903936}
   - {fileID: 1038797931}
+  - {fileID: 675335009}
