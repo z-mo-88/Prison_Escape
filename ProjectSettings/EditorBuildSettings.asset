@@ -29,6 +29,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/loseScreen.unity
     guid: 218710a0f4e36aa4f893c2fdd5e23a5b
+  - enabled: 1
+    path: Assets/Scenes/Level1.unity
+    guid: ed8bc238254c37a4abab827c6f14ec80
+  - enabled: 1
+    path: Assets/Scenes/Level2.unity
+    guid: 34c26bef380aecf4ba00a388bd6e0207
+  - enabled: 1
+    path: Assets/Scenes/Level3.unity
+    guid: 9fbc63e080715b947935a0c7599561ed
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 289c1b55c9541489481df5cc06664110, type: 3}
   m_UseUCBPForAssetBundles: 0
