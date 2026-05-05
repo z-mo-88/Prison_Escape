@@ -5,12 +5,14 @@ public class SceneLoader : MonoBehaviour
 {
     public void LoadScene(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
-    }
-
-    public void QuitGame()
-    {
-        Debug.Log("Quit Game");
-        Application.Quit();
+        if (sceneName == "PauseScene")
+        {
+            Time.timeScale = 0f; // ÌÊﬁ› «··⁄»…
+            SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+        }
+        else
+        {
+            SceneManager.LoadScene(sceneName);
+        }
     }
 }
