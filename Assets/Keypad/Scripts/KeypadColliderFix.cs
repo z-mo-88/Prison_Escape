@@ -3,13 +3,18 @@ using UnityEngine;
 public class KeypadColliderFix : MonoBehaviour
 {
     [Header("References")]
-    public Collider mainCollider; 
+    public Collider mainCollider;
     public CameraController cameraController;
+
+    public Light keypadLight;
 
     void Start()
     {
         if (cameraController == null && Camera.main != null)
             cameraController = Camera.main.GetComponent<CameraController>();
+
+        if (keypadLight != null)
+            keypadLight.enabled = false;
     }
 
     void Update()
@@ -17,17 +22,17 @@ public class KeypadColliderFix : MonoBehaviour
         if (cameraController == null || mainCollider == null)
             return;
 
-        // When zooming disable big collider
-        if (cameraController.IsInteracting())
+        // Check if we are currently interacting/zoomed
+        bool isInteracting = cameraController.IsInteracting();
+
+        // Handle Collider
+        mainCollider.enabled = !isInteracting;
+
+        //  Handle Light Toggle
+        if (keypadLight != null)
         {
-            if (mainCollider.enabled)
-                mainCollider.enabled = false;
-        }
-        // When not zooming enable again
-        else
-        {
-            if (!mainCollider.enabled)
-                mainCollider.enabled = true;
+            // The light is enabled ONLY when isInteracting is true
+            keypadLight.enabled = isInteracting;
         }
     }
 }
