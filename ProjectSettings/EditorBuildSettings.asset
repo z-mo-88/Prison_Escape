@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/NewGame.unity
     guid: aff07515dc8e63748ad260a040078548
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Setting.unity
     guid: caee356f79551904d9c74cbccb854102
   - enabled: 1
@@ -62,6 +62,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PauseScene.unity
     guid: 25ee74210d1042b46b2fdf07eb60c0cc
+  - enabled: 1
+    path: Assets/Scenes/Level5.unity
+    guid: 318f1ebdf4f07d1489bb258a5714b0ba
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 289c1b55c9541489481df5cc06664110, type: 3}
   m_UseUCBPForAssetBundles: 0
