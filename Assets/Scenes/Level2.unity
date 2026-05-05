@@ -653,7 +653,7 @@ PrefabInstance:
       objectReference: {fileID: 1631679423}
     - target: {fileID: 3850839214606643828, guid: e0bec34d79d60b14480521bc6f92441e, type: 3}
       propertyPath: timeRemaining
-      value: 90
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 7072981638014179438, guid: e0bec34d79d60b14480521bc6f92441e, type: 3}
       propertyPath: m_Name
@@ -4565,7 +4565,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Level2Manager
   door: {fileID: 129982405}
   timer: {fileID: 5623135}
-  winDelay: 5
+  winDelay: 4
 --- !u!1 &1963425429 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0e352505733884b4cb652474bf36fd84, type: 3}

@@ -1977,7 +1977,7 @@ PrefabInstance:
       objectReference: {fileID: 24410729}
     - target: {fileID: 3850839214606643828, guid: e0bec34d79d60b14480521bc6f92441e, type: 3}
       propertyPath: timeRemaining
-      value: 60
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 7072981638014179438, guid: e0bec34d79d60b14480521bc6f92441e, type: 3}
       propertyPath: m_Name

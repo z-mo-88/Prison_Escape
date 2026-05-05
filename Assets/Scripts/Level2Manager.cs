@@ -43,6 +43,6 @@ public class Level2Manager : MonoBehaviour
     {
         PlayerPrefs.SetInt("levelAt", 2); // Unlock level 2
         PlayerPrefs.Save();
-        SceneManager.LoadScene("LevelSelection");
+        SceneManager.LoadScene("WinScreen");
     }
 }
