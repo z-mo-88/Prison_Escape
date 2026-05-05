@@ -1,72 +1,126 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ButtonPuzzleManager : MonoBehaviour
 {
-    public PuzzleButtonLevel4 greenButton, redButton, blueButton;
+    public PuzzleButtonLevel4 greenButton;
+    public PuzzleButtonLevel4 redButton;
+    public PuzzleButtonLevel4 blueButton;
+
     public SlidingDoorLevel4 door;
+    public PowerHandle powerHandle;
 
-    [Header("Audio")]
-    public AudioSource audioSource;
-    public AudioClip resetSound;
+    public bool powerOn = false;
 
-    public bool powerOn = false; // Starts as FALSE
+    [Header("Win Settings")]
+    public float winDelay = 2f;
+
     private int currentStep = 0;
     private bool puzzleSolved = false;
 
     public void TurnPowerOn()
     {
         powerOn = true;
-        currentStep = 0;
+        ResetPuzzle();
+
+        Debug.Log("Power ON - Buttons ready");
     }
 
     public void PressButton(string color)
     {
-        // CRITICAL CHECK: If power is off, the button click is ignored entirely.
-        if (!powerOn || puzzleSolved)
+        if (!powerOn || puzzleSolved) return;
+
+        // STEP 0 → GREEN
+        if (currentStep == 0)
         {
-            Debug.Log("Buttons are disabled. Power is OFF.");
+            if (color == "Green")
+            {
+                greenButton.TurnOn();
+                currentStep = 1;
+            }
+            else
+            {
+                StartCoroutine(ResetWithDelay());
+            }
             return;
         }
 
-        bool correct = false;
-        if (currentStep == 0 && color == "Green") { greenButton.TurnOn(); correct = true; }
-        else if (currentStep == 1 && color == "Red") { redButton.TurnOn(); correct = true; }
-        else if (currentStep == 2 && color == "Blue") { blueButton.TurnOn(); correct = true; }
-
-        if (correct)
+        // STEP 1 → RED
+        if (currentStep == 1)
         {
-            currentStep++;
-            if (currentStep == 3) OpenDoor();
+            if (color == "Red")
+            {
+                redButton.TurnOn();
+                currentStep = 2;
+            }
+            else
+            {
+                StartCoroutine(ResetWithDelay());
+            }
+            return;
         }
-        else
+
+        // STEP 2 → BLUE
+        if (currentStep == 2)
         {
-            // Wrong button: Reset buttons and play sound, but KEEP powerOn = true.
-            StartCoroutine(ResetButtonsOnly());
+            if (color == "Blue")
+            {
+                blueButton.TurnOn();
+                currentStep = 3;
+                OpenDoor();
+            }
+            else
+            {
+                StartCoroutine(ResetWithDelay());
+            }
         }
-    }
-
-    public void ResetPuzzle()
-    {
-        StartCoroutine(ResetButtonsOnly());
-    }
-
-    IEnumerator ResetButtonsOnly()
-    {
-        yield return new WaitForSeconds(0.5f);
-
-        if (audioSource != null && resetSound != null)
-            audioSource.PlayOneShot(resetSound);
-
-        currentStep = 0;
-        if (greenButton) greenButton.TurnOff();
-        if (redButton) redButton.TurnOff();
-        if (blueButton) blueButton.TurnOff();
     }
 
     void OpenDoor()
     {
         puzzleSolved = true;
-        if (door) door.OpenDoor();
+
+        if (door != null)
+            door.OpenDoor();
+
+        Debug.Log("Puzzle Solved!");
+
+        GameTimer timer = FindFirstObjectByType<GameTimer>();
+        if (timer != null)
+            timer.timerRunning = false;
+
+        StartCoroutine(LoadWinScreen());
+    }
+
+    IEnumerator LoadWinScreen()
+    {
+        yield return new WaitForSeconds(winDelay);
+        SceneManager.LoadScene("WinScreen");
+    }
+
+    IEnumerator ResetWithDelay()
+    {
+        yield return new WaitForSeconds(0.6f);
+
+        currentStep = 0;
+
+        greenButton.TurnOff();
+        redButton.TurnOff();
+        blueButton.TurnOff();
+
+        if (powerHandle != null)
+            powerHandle.ResetHandle();
+
+        Debug.Log("Wrong → Reset ALL");
+    }
+
+    public void ResetPuzzle()
+    {
+        currentStep = 0;
+
+        if (greenButton != null) greenButton.TurnOff();
+        if (redButton != null) redButton.TurnOff();
+        if (blueButton != null) blueButton.TurnOff();
     }
 }

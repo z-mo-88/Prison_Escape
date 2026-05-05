@@ -2,15 +2,16 @@
 
 public class PuzzleButtonLevel4 : MonoBehaviour
 {
-    public string buttonColor;
+    public string buttonColor; // "Green", "Red", or "Blue"
     public ButtonPuzzleManager manager;
 
+    [Header("Visuals")]
     public Transform buttonPart;
     public float offY = 0f;
     public float onY = -0.4f;
+    public GameObject lightObject; 
 
-    public GameObject lightObject;
-
+    [Header("Audio")]
     public AudioSource audioSource;
     public AudioClip clickSound;
 
@@ -42,8 +43,6 @@ public class PuzzleButtonLevel4 : MonoBehaviour
 
     void TryClick()
     {
-        if (Camera.main == null) return;
-
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
@@ -60,7 +59,11 @@ public class PuzzleButtonLevel4 : MonoBehaviour
 
     void PressButton()
     {
-        if (manager == null || !manager.powerOn) return;
+        if (manager == null || !manager.powerOn)
+        {
+            Debug.Log("Button clicked, but Power is OFF in Manager.");
+            return;
+        }
 
         if (audioSource != null && clickSound != null)
             audioSource.PlayOneShot(clickSound);
@@ -83,6 +86,7 @@ public class PuzzleButtonLevel4 : MonoBehaviour
 
         if (lightObject != null)
             lightObject.SetActive(true);
+
     }
 
     public void TurnOff()
