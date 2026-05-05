@@ -30,14 +30,12 @@ public class CameraController : MonoBehaviour
     private float currentYaw = 0f;
     private float currentPitch = 0f;
 
-    // Rigidbody for movement control
     private Rigidbody playerRb;
 
     void Start()
     {
         fixedRotation = transform.rotation;
         offset = transform.position - player.position;
-
         playerRb = player.GetComponent<Rigidbody>();
     }
 
@@ -65,7 +63,6 @@ public class CameraController : MonoBehaviour
             {
                 Quaternion rotationOffset = Quaternion.Euler(currentPitch, currentYaw, 0);
                 Vector3 offsetDir = rotationOffset * (targetRotation * Vector3.back);
-
                 Vector3 desiredPos = targetPosition + offsetDir * zoomDistance;
 
                 transform.position = Vector3.Lerp(transform.position, desiredPos, Time.deltaTime * smoothSpeed);
@@ -76,9 +73,7 @@ public class CameraController : MonoBehaviour
             else
             {
                 Quaternion rotation = Quaternion.Euler(currentPitch, currentYaw, 0);
-
                 Vector3 offsetDir = rotation * Vector3.back;
-
                 Vector3 desiredPos = targetPosition + offsetDir * zoomDistance + Vector3.up * zoomHeight;
 
                 transform.position = Vector3.Lerp(transform.position, desiredPos, Time.deltaTime * smoothSpeed);
@@ -108,8 +103,6 @@ public class CameraController : MonoBehaviour
 
     public void EnterInteraction(Transform interactTarget)
     {
-
-
         if (isInteracting) return;
 
         isInteracting = true;
@@ -118,10 +111,10 @@ public class CameraController : MonoBehaviour
         currentYaw = 0f;
         currentPitch = 0f;
 
-        // Start puzzle
-        PuzzleManager.Instance.StartPuzzle();
+        if (PuzzleManager.Instance != null)
+            PuzzleManager.Instance.StartPuzzle();
 
-        // Freeze player movement 
+        // Freeze player
         if (playerRb != null)
         {
             playerRb.linearVelocity = Vector3.zero;
@@ -129,8 +122,8 @@ public class CameraController : MonoBehaviour
             playerRb.constraints = RigidbodyConstraints.FreezeAll;
         }
 
+        //Focus point
         Transform focus = target.Find("FocusPoint");
-
         if (focus != null)
         {
             useFocusPoint = true;
@@ -140,34 +133,37 @@ public class CameraController : MonoBehaviour
         else
         {
             useFocusPoint = false;
-
             Collider col = target.GetComponent<Collider>();
+            targetPosition = (col != null) ? col.bounds.center : target.position;
+        }
 
-            if (col != null)
-                targetPosition = col.bounds.center;
-            else
-                targetPosition = target.position;
+        //  Enable object movement
+        MovableObject obj = target.GetComponentInChildren<MovableObject>();
+        if (obj != null)
+        {
+            obj.EnableMove();
         }
     }
 
     public void ExitInteraction()
     {
+        MovableObject obj = target?.GetComponentInChildren<MovableObject>();
+
         isInteracting = false;
-        target = null;
-        useFocusPoint = false;
 
-        currentYaw = 0f;
-        currentPitch = 0f;
-
-        // Restore movement
         if (playerRb != null)
         {
             playerRb.constraints = RigidbodyConstraints.FreezeRotation;
         }
+
+        if (obj != null)
+        {
+            obj.DisableMove();
+        }
+
+        target = null;
+        useFocusPoint = false;
     }
 
-    public bool IsInteracting()
-    {
-        return isInteracting;
-    }
+    public bool IsInteracting() => isInteracting;
 }
