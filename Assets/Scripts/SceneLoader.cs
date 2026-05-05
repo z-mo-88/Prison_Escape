@@ -7,7 +7,7 @@ public class SceneLoader : MonoBehaviour
     {
         if (sceneName == "PauseScene")
         {
-            Time.timeScale = 0f; // ÌÊﬁ› «··⁄»…
+            Time.timeScale = 0f; 
             SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
         }
         else
