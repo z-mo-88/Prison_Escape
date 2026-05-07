@@ -4,20 +4,39 @@ using UnityEngine.SceneManagement;
 
 public class ButtonPuzzleManager : MonoBehaviour
 {
+    [Header("Buttons")]
     public PuzzleButtonLevel4 greenButton;
     public PuzzleButtonLevel4 redButton;
     public PuzzleButtonLevel4 blueButton;
 
+    [Header("Door")]
     public SlidingDoorLevel4 door;
-    public PowerHandle powerHandle;
 
+    [Header("Power")]
+    public PowerHandle powerHandle;
     public bool powerOn = false;
 
     [Header("Win Settings")]
     public float winDelay = 2f;
 
-    private int currentStep = 0;
+    [Header("Sound")]
+    public AudioSource audioSource;
+    public AudioClip wrongSound;
+
+    // Correct order
+    private string[] correctSequence = { "Green", "Red", "Blue" };
+
+    // Player input
+    private string[] playerSequence = new string[3];
+    private int inputIndex = 0;
+
     private bool puzzleSolved = false;
+
+    void Start()
+    {
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
+    }
 
     public void TurnPowerOn()
     {
@@ -29,51 +48,41 @@ public class ButtonPuzzleManager : MonoBehaviour
 
     public void PressButton(string color)
     {
-        if (!powerOn || puzzleSolved) return;
-
-        // STEP 0 → GREEN
-        if (currentStep == 0)
-        {
-            if (color == "Green")
-            {
-                greenButton.TurnOn();
-                currentStep = 1;
-            }
-            else
-            {
-                StartCoroutine(ResetWithDelay());
-            }
+        if (!powerOn || puzzleSolved)
             return;
+
+        // Save player input
+        playerSequence[inputIndex] = color;
+
+        inputIndex++;
+
+        // Wait until ALL buttons pressed
+        if (inputIndex >= correctSequence.Length)
+        {
+            CheckSequence();
+        }
+    }
+
+    void CheckSequence()
+    {
+        bool correct = true;
+
+        for (int i = 0; i < correctSequence.Length; i++)
+        {
+            if (playerSequence[i] != correctSequence[i])
+            {
+                correct = false;
+                break;
+            }
         }
 
-        // STEP 1 → RED
-        if (currentStep == 1)
+        if (correct)
         {
-            if (color == "Red")
-            {
-                redButton.TurnOn();
-                currentStep = 2;
-            }
-            else
-            {
-                StartCoroutine(ResetWithDelay());
-            }
-            return;
+            OpenDoor();
         }
-
-        // STEP 2 → BLUE
-        if (currentStep == 2)
+        else
         {
-            if (color == "Blue")
-            {
-                blueButton.TurnOn();
-                currentStep = 3;
-                OpenDoor();
-            }
-            else
-            {
-                StartCoroutine(ResetWithDelay());
-            }
+            StartCoroutine(ResetWithDelay());
         }
     }
 
@@ -86,9 +95,14 @@ public class ButtonPuzzleManager : MonoBehaviour
 
         Debug.Log("Puzzle Solved!");
 
+        // Stop timer
         GameTimer timer = FindFirstObjectByType<GameTimer>();
+
         if (timer != null)
             timer.timerRunning = false;
+
+        // Reset input
+        inputIndex = 0;
 
         StartCoroutine(LoadWinScreen());
     }
@@ -96,6 +110,7 @@ public class ButtonPuzzleManager : MonoBehaviour
     IEnumerator LoadWinScreen()
     {
         yield return new WaitForSeconds(winDelay);
+
         SceneManager.LoadScene("WinScreen");
     }
 
@@ -103,12 +118,22 @@ public class ButtonPuzzleManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.6f);
 
-        currentStep = 0;
+        // Wrong sound
+        if (audioSource != null && wrongSound != null)
+        {
+            audioSource.PlayOneShot(wrongSound);
+        }
 
+        // Reset input
+        inputIndex = 0;
+        playerSequence = new string[3];
+
+        // Reset buttons
         greenButton.TurnOff();
         redButton.TurnOff();
         blueButton.TurnOff();
 
+        // Reset handle + room lights
         if (powerHandle != null)
             powerHandle.ResetHandle();
 
@@ -117,10 +142,17 @@ public class ButtonPuzzleManager : MonoBehaviour
 
     public void ResetPuzzle()
     {
-        currentStep = 0;
+        inputIndex = 0;
 
-        if (greenButton != null) greenButton.TurnOff();
-        if (redButton != null) redButton.TurnOff();
-        if (blueButton != null) blueButton.TurnOff();
+        playerSequence = new string[3];
+
+        if (greenButton != null)
+            greenButton.TurnOff();
+
+        if (redButton != null)
+            redButton.TurnOff();
+
+        if (blueButton != null)
+            blueButton.TurnOff();
     }
 }

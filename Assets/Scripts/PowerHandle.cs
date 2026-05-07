@@ -2,34 +2,50 @@ using UnityEngine;
 
 public class PowerHandle : MonoBehaviour
 {
+    [Header("Handle Bone")]
+    public Transform handleBone;
+
+    [Header("Rotation")]
+    public float upRotation = 0f;
+    public float downRotation = -40f;
+
+    [Header("Manager")]
     public ButtonPuzzleManager manager;
+
+    [Header("Camera")]
     public CameraController cameraController;
 
     [Header("Sound")]
     public AudioSource audioSource;
     public AudioClip clickSound;
 
-    [Header("Movement")]
-    public float moveAmount = 0.5f;
+    [Header("Room Light")]
+    public GameObject roomLight;
 
     private bool isOn = false;
-    private bool selected = false;
-
-    private Vector3 startPosition;
 
     void Start()
     {
-        startPosition = transform.position;
-
         if (cameraController == null && Camera.main != null)
             cameraController = Camera.main.GetComponent<CameraController>();
 
         if (audioSource == null)
             audioSource = GetComponent<AudioSource>();
+
+        MoveUp();
+
+        if (roomLight != null)
+            roomLight.SetActive(false);
+
+        if (manager != null)
+            manager.powerOn = false;
     }
 
     void Update()
     {
+        if (cameraController != null && !cameraController.IsInteracting())
+            return;
+
         if (Input.GetMouseButtonDown(0))
         {
             TryClick();
@@ -38,19 +54,16 @@ public class PowerHandle : MonoBehaviour
 
     void TryClick()
     {
-        if (cameraController != null && !cameraController.IsInteracting())
+        if (Camera.main == null)
             return;
-
-        if (Camera.main == null) return;
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, 100f))
         {
-            PowerHandle clicked = hit.collider.GetComponentInParent<PowerHandle>();
-
-            if (clicked != null && clicked == this)
+            if (hit.collider.transform == transform ||
+                hit.collider.transform.IsChildOf(transform))
             {
                 Activate();
             }
@@ -59,52 +72,62 @@ public class PowerHandle : MonoBehaviour
 
     void Activate()
     {
-        if (!selected)
-        {
-            selected = true;
-            return;
-        }
-
         isOn = !isOn;
 
+        // SOUND
         if (audioSource != null && clickSound != null)
+        {
             audioSource.PlayOneShot(clickSound);
+        }
 
+        // TURN ON
         if (isOn)
         {
             MoveDown();
 
-            if (manager != null)
-                manager.TurnPowerOn();
-        }
-        else
-        {
-            MoveUp();
+            if (roomLight != null)
+                roomLight.SetActive(true);
 
             if (manager != null)
             {
-                manager.powerOn = false;
+                manager.powerOn = true;
                 manager.ResetPuzzle();
             }
+        }
+
+        // TURN OFF
+        else
+        {
+            ResetHandle();
         }
     }
 
     void MoveDown()
     {
-        transform.position = startPosition + new Vector3(0, -moveAmount, 0);
+        if (handleBone != null)
+        {
+            handleBone.localRotation =
+                Quaternion.Euler(downRotation, 0f, 0f);
+        }
     }
 
     void MoveUp()
     {
-        transform.position = startPosition;
+        if (handleBone != null)
+        {
+            handleBone.localRotation =
+                Quaternion.Euler(upRotation, 0f, 0f);
+        }
     }
 
     public void ResetHandle()
     {
         isOn = false;
-        selected = false;
 
         MoveUp();
+
+        if (roomLight != null)
+            roomLight.SetActive(false);
 
         if (manager != null)
             manager.powerOn = false;
