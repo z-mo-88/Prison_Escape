@@ -1995,7 +1995,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4c5de25e8fe83142abd64aa93d350d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PowerHandle
-  handleBone: {fileID: 531748627}
+  handleBone: {fileID: 1500768336}
   upRotation: 0
   downRotation: -40
   manager: {fileID: 1490973309}
@@ -2569,6 +2569,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.01, y: 0.012, z: 0.02701004}
   m_Center: {x: -1.3877788e-17, y: 0.000012714881, z: -0.0029788744}
+--- !u!4 &1500768336 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -7370156802671013846, guid: 09610bb775d07a248903d52f4fe5f5b5, type: 3}
+  m_PrefabInstance: {fileID: 1915726036}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1502100216 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5568371526223589888, guid: e430e81b335b314498fff562349013cc, type: 3}

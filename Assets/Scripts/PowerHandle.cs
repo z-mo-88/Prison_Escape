@@ -23,26 +23,33 @@ public class PowerHandle : MonoBehaviour
     public GameObject roomLight;
 
     private bool isOn = false;
+    private bool selected = false;
 
     void Start()
     {
+        // Camera
         if (cameraController == null && Camera.main != null)
             cameraController = Camera.main.GetComponent<CameraController>();
 
+        // Audio
         if (audioSource == null)
             audioSource = GetComponent<AudioSource>();
 
+        // Start UP
         MoveUp();
 
+        // Room light OFF
         if (roomLight != null)
             roomLight.SetActive(false);
 
+        // Power OFF
         if (manager != null)
             manager.powerOn = false;
     }
 
     void Update()
     {
+        // Only when zoomed
         if (cameraController != null && !cameraController.IsInteracting())
             return;
 
@@ -62,6 +69,7 @@ public class PowerHandle : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, 100f))
         {
+            // Click this object or children
             if (hit.collider.transform == transform ||
                 hit.collider.transform.IsChildOf(transform))
             {
@@ -72,6 +80,14 @@ public class PowerHandle : MonoBehaviour
 
     void Activate()
     {
+        // FIRST CLICK = SELECT ONLY
+        if (!selected)
+        {
+            selected = true;
+            return;
+        }
+
+        // SECOND CLICK = ACTIVATE
         isOn = !isOn;
 
         // SOUND
@@ -85,9 +101,11 @@ public class PowerHandle : MonoBehaviour
         {
             MoveDown();
 
+            // Room light ON
             if (roomLight != null)
                 roomLight.SetActive(true);
 
+            // Power ON
             if (manager != null)
             {
                 manager.powerOn = true;
@@ -123,12 +141,16 @@ public class PowerHandle : MonoBehaviour
     public void ResetHandle()
     {
         isOn = false;
+        selected = false;
 
+        // Move UP
         MoveUp();
 
+        // Room light OFF
         if (roomLight != null)
             roomLight.SetActive(false);
 
+        // Power OFF
         if (manager != null)
             manager.powerOn = false;
     }

@@ -22,6 +22,7 @@ public class PuzzleButtonLevel4 : MonoBehaviour
     public CameraController cameraController;
 
     private bool isOn = false;
+    private bool selected = false;
 
     void Start()
     {
@@ -51,14 +52,14 @@ public class PuzzleButtonLevel4 : MonoBehaviour
 
     void TryClick()
     {
-        if (Camera.main == null) return;
+        if (Camera.main == null)
+            return;
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, 100f))
         {
-            // 🔥 IMPORTANT FIX
             PuzzleButtonLevel4 clicked =
                 hit.collider.GetComponentInParent<PuzzleButtonLevel4>();
 
@@ -71,13 +72,16 @@ public class PuzzleButtonLevel4 : MonoBehaviour
 
     void PressButton()
     {
-        // No power = no interaction
         if (manager == null)
             return;
 
         if (!manager.powerOn)
+            return;
+
+        // FIRST CLICK = SELECT
+        if (!selected)
         {
-            Debug.Log("POWER OFF");
+            selected = true;
             return;
         }
 
@@ -85,16 +89,16 @@ public class PuzzleButtonLevel4 : MonoBehaviour
         if (isOn)
             return;
 
-        // Sound
+        // SOUND
         if (audioSource != null && clickSound != null)
         {
             audioSource.PlayOneShot(clickSound);
         }
 
-        // Visual ON
+        // TURN ON
         TurnOn();
 
-        // Send to manager
+        // SEND TO MANAGER
         manager.PressButton(buttonColor);
     }
 
@@ -102,7 +106,7 @@ public class PuzzleButtonLevel4 : MonoBehaviour
     {
         isOn = true;
 
-        // Move button DOWN
+        // Button DOWN
         if (buttonPart != null)
         {
             Vector3 pos = buttonPart.localPosition;
@@ -118,8 +122,9 @@ public class PuzzleButtonLevel4 : MonoBehaviour
     public void TurnOff()
     {
         isOn = false;
+        selected = false;
 
-        // Move button UP
+        // Button UP
         if (buttonPart != null)
         {
             Vector3 pos = buttonPart.localPosition;
