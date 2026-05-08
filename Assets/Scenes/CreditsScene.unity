@@ -284,8 +284,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15
-  m_fontSizeBase: 15
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -717,7 +717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -811,11 +811,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 915816365469099663, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 150
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 915816365469099663, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 30
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 915816365469099663, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -827,7 +827,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 915816365469099663, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 102
       objectReference: {fileID: 0}
     - target: {fileID: 915816365469099663, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -847,11 +847,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 915816365469099663, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 5
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 915816365469099663, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -105
+      value: -152
       objectReference: {fileID: 0}
     - target: {fileID: 915816365469099663, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -875,7 +875,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9070767824893591702, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_fontSize
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 9070767824893591702, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_fontColor.b
@@ -891,7 +891,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9070767824893591702, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_fontSizeBase
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 9070767824893591702, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_fontColor32.rgba

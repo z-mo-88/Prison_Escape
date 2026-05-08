@@ -333,11 +333,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 915816365469099663, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 150
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 915816365469099663, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 30
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 915816365469099663, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -349,7 +349,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 915816365469099663, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 913.51086
+      value: 102
       objectReference: {fileID: 0}
     - target: {fileID: 915816365469099663, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -369,11 +369,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 915816365469099663, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 915816365469099663, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -105
+      value: -152
       objectReference: {fileID: 0}
     - target: {fileID: 915816365469099663, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -397,7 +397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9070767824893591702, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_fontSize
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 9070767824893591702, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_margin.w
@@ -425,7 +425,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9070767824893591702, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_fontSizeBase
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 9070767824893591702, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_fontColor32.rgba
@@ -461,7 +461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
-  m_EffectColor: {r: 0.4862745, g: 0.49019608, b: 0.49803922, a: 0.5}
+  m_EffectColor: {r: 0.23921569, g: 0.22745098, b: 0.22745098, a: 0.5}
   m_EffectDistance: {x: 2, y: 2}
   m_UseGraphicAlpha: 1
 --- !u!1 &1625906913
@@ -669,7 +669,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -205, y: 30}
+  m_AnchoredPosition: {x: -205, y: 67}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1775500329
@@ -721,8 +721,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15
-  m_fontSizeBase: 15
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -866,7 +866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
