@@ -151,10 +151,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2136584264}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.0975986, y: 0.10300001}
-  m_AnchorMax: {x: 0.8927644, y: 0.887}
-  m_AnchoredPosition: {x: 5.5, y: 2.5}
-  m_SizeDelta: {x: 235, y: 107}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 2.5, y: 0.5}
+  m_SizeDelta: {x: 115, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4014195
 MonoBehaviour:
@@ -333,11 +333,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 915816365469099663, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 250
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 915816365469099663, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 915816365469099663, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -369,11 +369,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 915816365469099663, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 11
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 915816365469099663, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -158
+      value: -105
       objectReference: {fileID: 0}
     - target: {fileID: 915816365469099663, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -387,9 +387,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2583691782100929952, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -3.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5627911872723351918, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_Name
       value: BackButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 9070767824893591702, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
+      propertyPath: m_fontSize
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 9070767824893591702, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
+      propertyPath: m_margin.w
+      value: 13.705982
+      objectReference: {fileID: 0}
+    - target: {fileID: 9070767824893591702, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
+      propertyPath: m_margin.x
+      value: 21.55661
+      objectReference: {fileID: 0}
+    - target: {fileID: 9070767824893591702, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
+      propertyPath: m_margin.z
+      value: 18.995789
       objectReference: {fileID: 0}
     - target: {fileID: 9070767824893591702, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_fontColor.b
@@ -402,6 +422,10 @@ PrefabInstance:
     - target: {fileID: 9070767824893591702, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_fontColor.r
       value: 0.7169812
+      objectReference: {fileID: 0}
+    - target: {fileID: 9070767824893591702, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 9070767824893591702, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_fontColor32.rgba
@@ -645,7 +669,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -205, y: 60}
+  m_AnchoredPosition: {x: -205, y: 30}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1775500329
@@ -697,8 +721,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -736,7 +760,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -137.01804, y: 0, z: -541.85034, w: -159.15897}
+  m_margin: {x: 25.174911, y: 0, z: -387.5755, w: -85.24063}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
