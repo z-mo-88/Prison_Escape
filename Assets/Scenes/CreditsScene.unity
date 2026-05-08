@@ -233,7 +233,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -138, y: 108}
+  m_AnchoredPosition: {x: -138, y: 125}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &555183225
@@ -782,6 +782,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 2116323433}
     m_Modifications:
     - target: {fileID: 406261097915295122, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
+      propertyPath: m_Colors.m_NormalColor.b
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 406261097915295122, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
+      propertyPath: m_Colors.m_NormalColor.g
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 406261097915295122, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
+      propertyPath: m_Colors.m_NormalColor.r
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 406261097915295122, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1922540557}
@@ -811,7 +823,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 915816365469099663, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 300
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 915816365469099663, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_SizeDelta.y
@@ -851,7 +863,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 915816365469099663, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -152
+      value: -140
       objectReference: {fileID: 0}
     - target: {fileID: 915816365469099663, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -879,15 +891,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9070767824893591702, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_fontColor.b
-      value: 0.7019608
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 9070767824893591702, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_fontColor.g
-      value: 0.7019608
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 9070767824893591702, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_fontColor.r
-      value: 0.7176471
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 9070767824893591702, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_fontSizeBase
@@ -895,7 +907,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9070767824893591702, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4289967031
+      value: 4281545523
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
