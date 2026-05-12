@@ -14,22 +14,32 @@ public class BreakableScreen : MonoBehaviour
     void Update()
     {
         if (isBroken)
+        {
+            HammerPickup.nearBreakableScreen = false;
             return;
+        }
 
         float distance = Vector3.Distance(transform.position, player.position);
 
-        if (distance <= breakDistance && Input.GetKeyDown(KeyCode.E))
+        if (distance <= breakDistance)
         {
-            if (HammerPickup.hasHammer)
+            HammerPickup.nearBreakableScreen = true;
+
+            if (Input.GetKeyDown(KeyCode.E) && HammerPickup.hasHammer)
             {
                 BreakScreen();
             }
+        }
+        else
+        {
+            HammerPickup.nearBreakableScreen = false;
         }
     }
 
     void BreakScreen()
     {
         isBroken = true;
+        HammerPickup.nearBreakableScreen = false;
 
         if (breakingSound != null)
             breakingSound.Play();

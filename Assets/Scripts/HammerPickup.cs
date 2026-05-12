@@ -14,6 +14,9 @@ public class HammerPickup : MonoBehaviour
 
     public static bool hasHammer = false;
 
+    // This stops the hammer from returning when player is near the breakable screen
+    public static bool nearBreakableScreen = false;
+
     void Start()
     {
         originalPosition = transform.position;
@@ -31,7 +34,7 @@ public class HammerPickup : MonoBehaviour
             {
                 PickUpHammer();
             }
-            else if (isPickedUp)
+            else if (isPickedUp && !nearBreakableScreen)
             {
                 ReturnHammer();
             }
