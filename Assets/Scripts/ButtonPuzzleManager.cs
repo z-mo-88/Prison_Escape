@@ -23,6 +23,8 @@ public class ButtonPuzzleManager : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip wrongSound;
 
+    public FlashEffect flashEffect;
+
     // Correct order
     private string[] correctSequence = { "Green", "Red", "Blue" };
 
@@ -123,7 +125,10 @@ public class ButtonPuzzleManager : MonoBehaviour
         {
             audioSource.PlayOneShot(wrongSound);
         }
-
+        if(flashEffect != null)
+        {
+            flashEffect.WrongFeedback();
+        }
         // Reset input
         inputIndex = 0;
         playerSequence = new string[3];
@@ -142,6 +147,9 @@ public class ButtonPuzzleManager : MonoBehaviour
 
     public void ResetPuzzle()
     {
+
+       
+
         inputIndex = 0;
 
         playerSequence = new string[3];
@@ -154,5 +162,7 @@ public class ButtonPuzzleManager : MonoBehaviour
 
         if (blueButton != null)
             blueButton.TurnOff();
+
+        
     }
 }

@@ -10,15 +10,21 @@ public class SwitchPuzzle : MonoBehaviour
     public Switch[] switches;
     public GameObject hintGroup;
     public CameraController cameraController;
+    public Interactable interactable;
 
     [Header("Sound")]
     public AudioSource audioSource;
     public AudioClip resetSound;
 
+
     void Start()
     {
         if (audioSource == null)
             audioSource = GetComponent<AudioSource>();
+
+        if(hintGroup != null) 
+            hintGroup.SetActive(false);
+
     }
 
     public void RegisterInput(int index)
@@ -57,17 +63,16 @@ public class SwitchPuzzle : MonoBehaviour
 
     void Update()
     {
-        if (cameraController == null || hintGroup == null) return;
+        if (cameraController == null || hintGroup == null || interactable == null)
+            return;
 
-        if (cameraController.IsInteracting())
+        if (cameraController.currentTarget == interactable.transform)
         {
-            if (!hintGroup.activeSelf)
-                hintGroup.SetActive(true);
+            hintGroup.SetActive(true);
         }
         else
         {
-            if (hintGroup.activeSelf)
-                hintGroup.SetActive(false);
+            hintGroup.SetActive(false);
         }
     }
 

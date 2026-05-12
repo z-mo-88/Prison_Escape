@@ -22,6 +22,8 @@ public class CameraController : MonoBehaviour
     private bool isInteracting = false;
     private bool useFocusPoint = false;
 
+    public Transform currentTarget;
+
     private Transform target;
 
     private Vector3 targetPosition;
@@ -105,6 +107,7 @@ public class CameraController : MonoBehaviour
     {
         if (isInteracting) return;
 
+        currentTarget = interactTarget;
         isInteracting = true;
         target = interactTarget;
 
@@ -147,6 +150,8 @@ public class CameraController : MonoBehaviour
 
     public void ExitInteraction()
     {
+        currentTarget = null;
+
         MovableObject obj = target?.GetComponentInChildren<MovableObject>();
 
         isInteracting = false;
@@ -164,6 +169,7 @@ public class CameraController : MonoBehaviour
         target = null;
         useFocusPoint = false;
     }
-
+    
     public bool IsInteracting() => isInteracting;
+   
 }

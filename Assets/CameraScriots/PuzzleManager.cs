@@ -5,6 +5,7 @@ using System.Collections;
 public class PuzzleManager : MonoBehaviour
 {
     public static PuzzleManager Instance;
+    public FlashEffect flashEffect;
 
     private bool isActive = false;
     private bool isSolved = false;
@@ -65,6 +66,8 @@ public class PuzzleManager : MonoBehaviour
     // Called when player makes mistake
     public void ResetPuzzle()
     {
+        flashEffect.WrongFeedback();
+
         if (!isActive) return;
 
         Debug.Log("Puzzle Reset");
