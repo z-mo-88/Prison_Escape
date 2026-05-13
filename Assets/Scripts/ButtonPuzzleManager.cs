@@ -101,14 +101,27 @@ public class ButtonPuzzleManager : MonoBehaviour
         GameTimer timer = FindFirstObjectByType<GameTimer>();
 
         if (timer != null)
+        {
             timer.timerRunning = false;
+
+            // SAVE DATA
+            PlayerPrefs.SetInt(
+                "CompletedPuzzles", 4);
+
+            PlayerPrefs.SetInt(
+                "FinalScore",
+                timer.GetScore());
+
+            PlayerPrefs.SetString(
+                "TimeTaken",
+                timer.GetFormattedTimeTaken());
+        }
 
         // Reset input
         inputIndex = 0;
 
         StartCoroutine(LoadWinScreen());
     }
-
     IEnumerator LoadWinScreen()
     {
         yield return new WaitForSeconds(winDelay);

@@ -17,26 +17,43 @@ public class HammerPickup : MonoBehaviour
     // This stops the hammer from returning when player is near the breakable screen
     public static bool nearBreakableScreen = false;
 
+    public CameraController cameraController;
+    [Header("Audio")]
+    public AudioSource pickupAudio;
     void Start()
     {
         originalPosition = transform.position;
         originalRotation = transform.rotation;
         originalParent = transform.parent;
+
+        if (cameraController == null &&
+    Camera.main != null)
+        {
+            cameraController =
+                Camera.main.GetComponent<CameraController>();
+        }
     }
 
     void Update()
     {
-        float distance = Vector3.Distance(transform.position, player.position);
+        float distance = Vector3.Distance(
+            transform.position,
+            player.position);
 
-        if (Input.GetKeyDown(KeyCode.E))
+        //  ONLY allow while zooming/interacting
+        if (cameraController != null &&
+            cameraController.IsInteracting())
         {
-            if (!isPickedUp && distance <= pickupDistance)
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                PickUpHammer();
-            }
-            else if (isPickedUp && !nearBreakableScreen)
-            {
-                ReturnHammer();
+                if (!isPickedUp && distance <= pickupDistance)
+                {
+                    PickUpHammer();
+                }
+                else if (isPickedUp && !nearBreakableScreen)
+                {
+                    ReturnHammer();
+                }
             }
         }
     }
@@ -45,6 +62,11 @@ public class HammerPickup : MonoBehaviour
     {
         isPickedUp = true;
         hasHammer = true;
+
+        if (pickupAudio != null)
+        {
+            pickupAudio.Play();
+        }
 
         Rigidbody rb = GetComponent<Rigidbody>();
         if (rb != null)

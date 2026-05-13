@@ -41,17 +41,33 @@ public class Level5Manager : MonoBehaviour
                 Debug.LogWarning("Door is not assigned in Level5Manager.");
 
             GameTimer timer = FindFirstObjectByType<GameTimer>();
+
             if (timer != null)
+            {
+                // Stop timer
                 timer.timerRunning = false;
+
+                // SAVE DATA
+                PlayerPrefs.SetInt(
+                    "CompletedPuzzles", 5);
+
+                PlayerPrefs.SetInt(
+                    "FinalScore",
+                    timer.GetScore());
+
+                PlayerPrefs.SetString(
+                    "TimeTaken",
+                    timer.GetFormattedTimeTaken());
+            }
 
             StartCoroutine(LoadWinScreen());
         }
-    }
 
-    IEnumerator LoadWinScreen()
-    {
-        yield return new WaitForSeconds(winDelay);
+        IEnumerator LoadWinScreen()
+        {
+            yield return new WaitForSeconds(winDelay);
 
-        SceneManager.LoadScene("WinScreen");
+            SceneManager.LoadScene("WinScreen");
+        }
     }
 }

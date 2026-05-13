@@ -38,10 +38,23 @@ public class PuzzleManager : MonoBehaviour
         isSolved = true;
         isActive = false;
 
-        int score = FindFirstObjectByType<GameTimer>().GetScore();
+        GameTimer timer = FindFirstObjectByType<GameTimer>();
+
+        int score = timer.GetScore();
+
         Debug.Log("Score: " + score);
 
         Debug.Log("Puzzle Solved!");
+
+        // SAVE DATA
+        PlayerPrefs.SetInt("CompletedPuzzles", 3);
+
+        PlayerPrefs.SetInt("FinalScore", score);
+
+        PlayerPrefs.SetString(
+            "TimeTaken",
+            timer.GetFormattedTimeTaken()
+        );
 
         // OPEN DOOR
         if (door != null)

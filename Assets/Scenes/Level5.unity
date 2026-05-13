@@ -815,10 +815,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wooden_Table
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4a1cbcfcbc0a2da4a9571adc285a618b, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4a1cbcfcbc0a2da4a9571adc285a618b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1921151891}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4a1cbcfcbc0a2da4a9571adc285a618b, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 1344579942}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4a1cbcfcbc0a2da4a9571adc285a618b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1344579938}
@@ -1554,6 +1564,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5567fcffbdb1ed459024a8b6b84e503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  cameraController: {fileID: 0}
+  player: {fileID: 0}
+  interactDistance: 3
+  isZoomed: 0
 --- !u!114 &608036606 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2303921294396319334, guid: 2cf8072ebed1149479d25d30c324125c, type: 3}
@@ -2005,6 +2019,7 @@ MonoBehaviour:
   player: {fileID: 379121198}
   handPoint: {fileID: 596770921}
   pickupDistance: 5
+  cameraController: {fileID: 0}
 --- !u!65 &826322440
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2634,6 +2649,7 @@ MonoBehaviour:
   rotationSpeed: 60
   maxHorizontalAngle: 30
   maxVerticalAngle: 20
+  currentTarget: {fileID: 0}
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2928,6 +2944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7182c09e7fcc4c94fa88a16affedd108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleManager
+  flashEffect: {fileID: 0}
   door: {fileID: 183117766}
 --- !u!4 &1080063018
 Transform:
@@ -3125,6 +3142,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Skull_Table_01a
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2f0987b14669b674cb37ebca0961e851, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
     - target: {fileID: 4210357320963261148, guid: 2f0987b14669b674cb37ebca0961e851, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -3143,7 +3164,13 @@ PrefabInstance:
       addedObject: {fileID: 1679822291}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2f0987b14669b674cb37ebca0961e851, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1679822293}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2f0987b14669b674cb37ebca0961e851, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1679822290}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2f0987b14669b674cb37ebca0961e851, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1679822294}
     - targetCorrespondingSourceObject: {fileID: -4864833620444741553, guid: 2f0987b14669b674cb37ebca0961e851, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1825539748}
@@ -3334,6 +3361,108 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08008f579a6dfe84191a51323a92a523, type: 3}
+--- !u!1 &1283038232 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7072981638014179438, guid: e0bec34d79d60b14480521bc6f92441e, type: 3}
+  m_PrefabInstance: {fileID: 1697483249}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1283038233
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283038232}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: a98a1ccb1f60b2e4f8e9ede7c769d18c, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &1295773978 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6544425372608819299, guid: ad8fc975b7237c34fa4345155b2a556d, type: 3}
@@ -3649,6 +3778,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5567fcffbdb1ed459024a8b6b84e503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  cameraController: {fileID: 0}
+  player: {fileID: 0}
+  interactDistance: 3
+  isZoomed: 0
 --- !u!65 &1332879376
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4059,6 +4192,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.020070339, y: 0.008875014, z: 0.0087123765}
   m_Center: {x: -0.0006980398, y: 0.00021093535, z: 0.0043520215}
+--- !u!4 &1344579941 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4a1cbcfcbc0a2da4a9571adc285a618b, type: 3}
+  m_PrefabInstance: {fileID: 237360090}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1344579942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344579934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5567fcffbdb1ed459024a8b6b84e503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  cameraController: {fileID: 963194229}
+  player: {fileID: 0}
+  interactDistance: 3
+  isZoomed: 0
 --- !u!1001 &1395448727
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4164,6 +4318,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5567fcffbdb1ed459024a8b6b84e503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  cameraController: {fileID: 0}
+  player: {fileID: 0}
+  interactDistance: 3
+  isZoomed: 0
 --- !u!65 &1395448731
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4796,6 +4954,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5567fcffbdb1ed459024a8b6b84e503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  cameraController: {fileID: 0}
+  player: {fileID: 0}
+  interactDistance: 3
+  isZoomed: 0
 --- !u!65 &1620039534
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4910,6 +5072,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5567fcffbdb1ed459024a8b6b84e503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  cameraController: {fileID: 0}
+  player: {fileID: 0}
+  interactDistance: 3
+  isZoomed: 0
 --- !u!1 &1679822288 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2f0987b14669b674cb37ebca0961e851, type: 3}
@@ -5029,6 +5195,44 @@ MonoBehaviour:
   blueScreen: {fileID: 424981133}
   numberObject: {fileID: 738564018}
   breakingSound: {fileID: 1679822290}
+  cameraController: {fileID: 0}
+--- !u!114 &1679822293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679822288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5567fcffbdb1ed459024a8b6b84e503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  cameraController: {fileID: 963194229}
+  player: {fileID: 0}
+  interactDistance: 3
+  isZoomed: 0
+--- !u!65 &1679822294
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679822288}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 3, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1697483249
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5086,6 +5290,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1295773978}
     - target: {fileID: 3850839214606643828, guid: e0bec34d79d60b14480521bc6f92441e, type: 3}
+      propertyPath: warningAudio
+      value: 
+      objectReference: {fileID: 1283038233}
+    - target: {fileID: 3850839214606643828, guid: e0bec34d79d60b14480521bc6f92441e, type: 3}
       propertyPath: timeRemaining
       value: 240
       objectReference: {fileID: 0}
@@ -5096,7 +5304,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7072981638014179438, guid: e0bec34d79d60b14480521bc6f92441e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1283038233}
   m_SourcePrefab: {fileID: 100100000, guid: e0bec34d79d60b14480521bc6f92441e, type: 3}
 --- !u!1 &1699029394
 GameObject:
@@ -5324,6 +5535,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5567fcffbdb1ed459024a8b6b84e503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  cameraController: {fileID: 0}
+  player: {fileID: 0}
+  interactDistance: 3
+  isZoomed: 0
 --- !u!65 &1756981960
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6072,6 +6287,37 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1921151890
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1921151891}
+  m_Layer: 0
+  m_Name: FoucsPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1921151891
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1921151890}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.15006189, y: 0.00000002235174, z: -0.0000000074505797, w: 0.98867667}
+  m_LocalPosition: {x: -0.0243, y: -0.0199, z: 0.00957}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1344579941}
+  m_LocalEulerAnglesHint: {x: -17.261, y: 0, z: 0}
 --- !u!4 &1923026094 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4811549221200363838, guid: 08008f579a6dfe84191a51323a92a523, type: 3}
@@ -6729,6 +6975,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5567fcffbdb1ed459024a8b6b84e503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  cameraController: {fileID: 0}
+  player: {fileID: 0}
+  interactDistance: 3
+  isZoomed: 0
 --- !u!65 &2112049710
 BoxCollider:
   m_ObjectHideFlags: 0

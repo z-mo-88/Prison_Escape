@@ -15,8 +15,15 @@ public class GameTimer : MonoBehaviour
     [Header("Lose Settings")]
     public float loseDelay = 2f;
 
+    private float startTime;
+
+    [Header("Warning Sound")]
+    public AudioSource warningAudio;
+    public float warningTime = 10f;
     void Start()
     {
+        startTime = timeRemaining;
+
         UpdateTimerUI();
     }
 
@@ -29,25 +36,39 @@ public class GameTimer : MonoBehaviour
             timeRemaining -= Time.deltaTime;
             UpdateTimerUI();
 
-            //  BLINK EFFECT WHEN LOW TIME
-            if (timeRemaining < 10)
+            // Blink when low time
+            if (timeRemaining < warningTime)
             {
                 timerText.color = Color.Lerp(
                     Color.red,
                     Color.white,
                     Mathf.PingPong(Time.time * 5, 1)
                 );
+
+                // Play warning sound
+                if (warningAudio != null && !warningAudio.isPlaying)
+                {
+                    warningAudio.Play();
+                }
             }
             else
             {
-                timerText.color = Color.red; // normal color
+                timerText.color = Color.red;
+
+                // Stop sound if time above warning
+                if (warningAudio != null && warningAudio.isPlaying)
+                {
+                    warningAudio.Stop();
+                }
             }
         }
         else
         {
             timeRemaining = 0;
             timerRunning = false;
+
             UpdateTimerUI();
+
             TimeUp();
         }
     }
@@ -57,7 +78,9 @@ public class GameTimer : MonoBehaviour
         int minutes = Mathf.FloorToInt(timeRemaining / 60);
         int seconds = Mathf.FloorToInt(timeRemaining % 60);
 
-        timerText.text = minutes.ToString("00") + ":" + seconds.ToString("00");
+        timerText.text =
+            minutes.ToString("00") + ":" +
+            seconds.ToString("00");
     }
 
     void TimeUp()
@@ -65,6 +88,11 @@ public class GameTimer : MonoBehaviour
         Debug.Log("YOU LOST!");
 
         timerRunning = false;
+
+        if (warningAudio != null)
+        {
+            warningAudio.Stop();
+        }
 
         StartCoroutine(LoadLoseScreen());
     }
@@ -76,8 +104,21 @@ public class GameTimer : MonoBehaviour
         SceneManager.LoadScene("loseScreen");
     }
 
+    // SCORE
     public int GetScore()
     {
         return Mathf.RoundToInt(timeRemaining * 10);
+    }
+
+    // TIME TAKEN
+    public string GetFormattedTimeTaken()
+    {
+        float timeTaken = startTime - timeRemaining;
+
+        int minutes = Mathf.FloorToInt(timeTaken / 60);
+        int seconds = Mathf.FloorToInt(timeTaken % 60);
+
+        return minutes.ToString("00") + ":" +
+               seconds.ToString("00");
     }
 }

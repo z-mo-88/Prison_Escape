@@ -41,8 +41,26 @@ public class Level2Manager : MonoBehaviour
 
     void LoadWinScreen()
     {
-        PlayerPrefs.SetInt("levelAt", 2); // Unlock level 2
+        // Unlock level
+        PlayerPrefs.SetInt("levelAt", 2);
+
+        // SAVE SCORE
+        if (timer != null)
+        {
+            PlayerPrefs.SetInt(
+                "CompletedPuzzles", 2);
+
+            PlayerPrefs.SetInt(
+                "FinalScore",
+                timer.GetScore());
+
+            PlayerPrefs.SetString(
+                "TimeTaken",
+                timer.GetFormattedTimeTaken());
+        }
+
         PlayerPrefs.Save();
+
         SceneManager.LoadScene("WinScreen");
     }
 }
