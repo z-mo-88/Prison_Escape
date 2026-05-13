@@ -79,4 +79,15 @@ public class PlayerMovement : MonoBehaviour
             rb.rotation = Quaternion.Slerp(rb.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
         }
     }
+
+    public void PlayInteractAnimation()
+    {
+        if (animator != null)
+        {
+            animator.ResetTrigger("Interact");
+            animator.SetTrigger("Interact");
+
+            animator.SetBool("isWalking", false);
+        }
+    }
 }
