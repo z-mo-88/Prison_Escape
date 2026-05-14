@@ -4,6 +4,7 @@ public class Level5SwitchPuzzle : MonoBehaviour
 {
     public Level5Switch[] allSwitches;
     public Level5Manager levelManager;
+    public FlashEffect flashEffect;
 
     private int correctOnCount = 0;
     private bool isSolved = false;
@@ -50,6 +51,7 @@ public class Level5SwitchPuzzle : MonoBehaviour
 
     public void ResetCorrectSwitchesOnly()
     {
+
         correctOnCount = 0;
         isSolved = false;
 
@@ -57,6 +59,11 @@ public class Level5SwitchPuzzle : MonoBehaviour
         if (audioSource != null && resetSound != null)
         {
             audioSource.PlayOneShot(resetSound);
+        }
+
+        if (flashEffect != null)
+        {
+            flashEffect.WrongFeedback();
         }
 
         foreach (Level5Switch sw in allSwitches)
@@ -70,6 +77,7 @@ public class Level5SwitchPuzzle : MonoBehaviour
 
     public void ResetAllSwitches()
     {
+
         correctOnCount = 0;
         isSolved = false;
 
