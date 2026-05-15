@@ -9,7 +9,7 @@ public class KeyPickup : MonoBehaviour
     public CameraController cameraController;
 
     [Header("Audio")]
-    public AudioSource pickupAudio;  
+    public AudioSource pickupAudio;
 
     private bool playerNear = false;
     private bool picked = false;
@@ -24,6 +24,12 @@ public class KeyPickup : MonoBehaviour
     {
         if (playerNear && !picked && Input.GetKeyDown(KeyCode.E))
         {
+            // Fix: Don't allow picking up a new key if already holding one
+            if (inventory != null && inventory.hasKey)
+            {
+                return;
+            }
+
             if (cameraController != null && cameraController.IsInteracting())
             {
                 PickKey();
@@ -37,7 +43,6 @@ public class KeyPickup : MonoBehaviour
 
         inventory.hasKey = true;
 
-        
         if (pickupAudio != null)
             pickupAudio.Play();
 

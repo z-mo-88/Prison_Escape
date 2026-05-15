@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using TMPro; // Added for TextMeshPro UI support
 
 public class DoorOpenWithKey : MonoBehaviour
 {
@@ -9,6 +10,10 @@ public class DoorOpenWithKey : MonoBehaviour
 
     public float slideDistance = 3f;
     public float slideSpeed = 1f;
+
+    [Header("UI Feedback")]
+    public TextMeshProUGUI feedbackText; // Drag your UI text here
+    public float messageDuration = 2.5f;
 
     [Header("Sound")]
     public AudioSource audioSource;
@@ -24,6 +29,7 @@ public class DoorOpenWithKey : MonoBehaviour
 
     private Vector3 closedPosition;
     private Vector3 openPosition;
+    private Coroutine feedbackCoroutine;
 
     void Start()
     {
@@ -36,53 +42,60 @@ public class DoorOpenWithKey : MonoBehaviour
 
     void Update()
     {
-        // Start opening
         if (playerNear && inventory != null && inventory.hasKey)
         {
-            if (!opening)
+            inventory.keyAttempts++;
+
+            KeyPickup heldKey = player.GetComponentInChildren<KeyPickup>();
+            if (heldKey != null)
             {
-                opening = true;
+                Destroy(heldKey.gameObject);
+            }
 
-                // Play sound once
-                if (!soundPlayed &&
-                    audioSource != null &&
-                    openSound != null)
+            inventory.hasKey = false;
+
+            if (inventory.keyAttempts >= 3)
+            {
+                if (!opening)
                 {
-                    audioSource.PlayOneShot(openSound);
-                    soundPlayed = true;
+                    opening = true;
+
+                    if (!soundPlayed && audioSource != null && openSound != null)
+                    {
+                        audioSource.PlayOneShot(openSound);
+                        soundPlayed = true;
+                    }
+
+                    GameTimer timer = FindFirstObjectByType<GameTimer>();
+                    if (timer != null)
+                    {
+                        timer.timerRunning = false;
+                        PlayerPrefs.SetInt("CompletedPuzzles", 1);
+                        PlayerPrefs.SetInt("FinalScore", timer.GetScore());
+                        PlayerPrefs.SetString("TimeTaken", timer.GetFormattedTimeTaken());
+                    }
+
+                    if (!winStarted)
+                    {
+                        winStarted = true;
+                        StartCoroutine(LoadWinScreen());
+                    }
                 }
+            }
+            else
+            {
+                // This runs for attempts 1 and 2 (The Wrong Keys)
+                Debug.Log($"Key dropped! Attempt {inventory.keyAttempts}/3 failed.");
 
-                // Stop timer
-                GameTimer timer =
-                    FindFirstObjectByType<GameTimer>();
-
-                if (timer != null)
+                // Show the "That's not the one!" message on screen
+                if (feedbackText != null)
                 {
-                    timer.timerRunning = false;
-
-                    // SAVE DATA
-                    PlayerPrefs.SetInt(
-                        "CompletedPuzzles", 1);
-
-                    PlayerPrefs.SetInt(
-                        "FinalScore",
-                        timer.GetScore());
-
-                    PlayerPrefs.SetString(
-                        "TimeTaken",
-                        timer.GetFormattedTimeTaken());
-                }
-
-                // Start win screen ONCE
-                if (!winStarted)
-                {
-                    winStarted = true;
-                    StartCoroutine(LoadWinScreen());
+                    if (feedbackCoroutine != null) StopCoroutine(feedbackCoroutine);
+                    feedbackCoroutine = StartCoroutine(ShowFeedback("That's not the one!"));
                 }
             }
         }
 
-        // Slide door
         if (opening)
         {
             transform.position = Vector3.MoveTowards(
@@ -93,10 +106,20 @@ public class DoorOpenWithKey : MonoBehaviour
         }
     }
 
+    // Coroutine to display the failure message temporarily
+    IEnumerator ShowFeedback(string message)
+    {
+        feedbackText.text = message;
+        feedbackText.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(messageDuration);
+
+        feedbackText.gameObject.SetActive(false);
+    }
+
     IEnumerator LoadWinScreen()
     {
         yield return new WaitForSeconds(winDelay);
-
         SceneManager.LoadScene("WinScreen");
     }
 
