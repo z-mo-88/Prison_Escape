@@ -90,4 +90,9 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isWalking", false);
         }
     }
+
+    public bool IsMoving()
+{
+    return movement.magnitude > 0.1f;
+}
 }
