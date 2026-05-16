@@ -10,7 +10,7 @@ public class PlayerInteraction : MonoBehaviour
     void Update()
     {
         if (!cameraController.IsInteracting() &&
-    Mouse.current.leftButton.wasPressedThisFrame)
+            Mouse.current.leftButton.wasPressedThisFrame)
         {
             TryInteract();
         }
@@ -18,18 +18,23 @@ public class PlayerInteraction : MonoBehaviour
 
     void TryInteract()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+        Ray ray =
+            Camera.main.ScreenPointToRay(
+                Mouse.current.position.ReadValue()
+            );
+
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, 100f))
         {
-            // ONLY interact with objects that have Interactable
-            Interactable interactable = hit.collider.GetComponent<Interactable>();
+            // FIND INTERACTABLE
+            Interactable interactable =
+                hit.collider.GetComponentInParent<Interactable>();
 
             if (interactable == null)
                 return;
 
-            // Distance check
+            // DISTANCE CHECK
             float distance = Vector3.Distance(
                 playerPoint.position,
                 hit.collider.ClosestPoint(playerPoint.position)
@@ -37,7 +42,8 @@ public class PlayerInteraction : MonoBehaviour
 
             if (distance <= interactDistance)
             {
-                cameraController.EnterInteraction(hit.collider.transform.root);
+                // PLAY INTERACT FIRST
+                interactable.Interact();
             }
         }
     }

@@ -105,43 +105,62 @@ public class CameraController : MonoBehaviour
 
     public void EnterInteraction(Transform interactTarget)
     {
-        if (isInteracting) return;
+        // SWITCHING BETWEEN OBJECTS
+        if (isInteracting)
+        {
+            ExitInteraction();
+        }
 
         currentTarget = interactTarget;
+
         isInteracting = true;
+
         target = interactTarget;
 
         currentYaw = 0f;
         currentPitch = 0f;
 
         if (PuzzleManager.Instance != null)
+        {
             PuzzleManager.Instance.StartPuzzle();
+        }
 
-        // Freeze player
+        // FREEZE PLAYER
         if (playerRb != null)
         {
             playerRb.linearVelocity = Vector3.zero;
             playerRb.angularVelocity = Vector3.zero;
-            playerRb.constraints = RigidbodyConstraints.FreezeAll;
+
+            playerRb.constraints =
+                RigidbodyConstraints.FreezeAll;
         }
 
-        //Focus point
+        // FIND FOCUS POINT
         Transform focus = target.Find("FocusPoint");
+
         if (focus != null)
         {
             useFocusPoint = true;
+
             targetPosition = focus.position;
             targetRotation = focus.rotation;
         }
         else
         {
             useFocusPoint = false;
+
             Collider col = target.GetComponent<Collider>();
-            targetPosition = (col != null) ? col.bounds.center : target.position;
+
+            targetPosition =
+                (col != null)
+                ? col.bounds.center
+                : target.position;
         }
 
-        //  Enable object movement
-        MovableObject obj = target.GetComponentInChildren<MovableObject>();
+        // ENABLE MOVEMENT
+        MovableObject obj =
+            target.GetComponentInChildren<MovableObject>();
+
         if (obj != null)
         {
             obj.EnableMove();

@@ -17507,7 +17507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   cameraController: {fileID: 963194229}
-  player: {fileID: 0}
+  player: {fileID: 1551570214}
   interactDistance: 3
   isZoomed: 0
 --- !u!114 &1400647303

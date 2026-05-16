@@ -3,11 +3,12 @@ using System.Collections;
 
 public class Interactable : MonoBehaviour
 {
-    public CameraController cameraController;
+    private CameraController cameraController;
     private PlayerMovement playerMovement;
 
     [Header("Interaction")]
-    public Transform player;
+    private Transform player;
+
     public float interactDistance = 3f;
 
     [HideInInspector]
@@ -16,67 +17,78 @@ public class Interactable : MonoBehaviour
     private bool isBusy = false;
     private bool canInteract = true;
 
-    void Start()
+    void Awake()
     {
-        if (cameraController == null && Camera.main != null)
+       
+        if (Camera.main != null)
         {
-            cameraController = Camera.main.GetComponent<CameraController>();
+            cameraController =
+                Camera.main.GetComponent<CameraController>();
         }
 
-        playerMovement = FindFirstObjectByType<PlayerMovement>();
+      
+        GameObject playerObj =
+            GameObject.FindGameObjectWithTag("Player");
 
-        // AUTO FIND PLAYER
-        if (player == null)
+        if (playerObj != null)
         {
-            GameObject p = GameObject.FindGameObjectWithTag("Player");
+            player = playerObj.transform;
 
-            if (p != null)
-            {
-                player = p.transform;
-            }
+         
+            playerMovement =
+                playerObj.GetComponent<PlayerMovement>();
         }
     }
 
-    void OnMouseDown()
+    public void Interact()
     {
         if (cameraController == null || player == null)
-            return;
+        {
+            Debug.LogWarning(
+                "Missing CameraController or Player."
+            );
 
-        // BLOCK EXTRA CLICKS
-        if (!canInteract || isBusy || isZoomed || cameraController.IsInteracting())
             return;
+        }
 
-        float distance = Vector3.Distance(player.position, transform.position);
-
-        // TOO FAR
-        if (distance > interactDistance)
+        // BLOCK EXTRA INTERACTIONS
+        if (!canInteract ||
+            isBusy ||
+            isZoomed ||
+            cameraController.IsInteracting())
+        {
             return;
+        }
 
         isBusy = true;
         canInteract = false;
 
-        // PLAY INTERACT ANIMATION
+        // PLAY INTERACT ANIMATION FIRST
         if (playerMovement != null)
         {
             playerMovement.PlayInteractAnimation();
         }
 
+        // WAIT THEN START ZOOM
         StartCoroutine(ZoomDelay());
     }
 
     IEnumerator ZoomDelay()
     {
         // WAIT FOR INTERACT ANIMATION
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
 
-        // START ZOOM
-        cameraController.EnterInteraction(transform);
+        if (cameraController == null)
+            yield break;
+
+        // START CAMERA INTERACTION
+        cameraController.EnterInteraction(transform.root);
 
         isZoomed = true;
 
         isBusy = false;
 
-        // SMALL DELAY BEFORE ALLOWING NEXT INTERACTION
+        // SMALL INPUT DELAY
         yield return new WaitForSeconds(0.2f);
 
         canInteract = true;
@@ -84,10 +96,13 @@ public class Interactable : MonoBehaviour
 
     void Update()
     {
-        // EXIT ZOOM
+        // EXIT INTERACTION
         if (isZoomed && Input.GetKeyDown(KeyCode.Escape))
         {
-            cameraController.ExitInteraction();
+            if (cameraController != null)
+            {
+                cameraController.ExitInteraction();
+            }
 
             isZoomed = false;
 

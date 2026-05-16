@@ -352,8 +352,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5567fcffbdb1ed459024a8b6b84e503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
-  cameraController: {fileID: 0}
-  player: {fileID: 0}
+  cameraController: {fileID: 963194229}
+  player: {fileID: 1032554670}
   interactDistance: 3
   isZoomed: 0
 --- !u!1001 &26866493
@@ -685,8 +685,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5567fcffbdb1ed459024a8b6b84e503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
-  cameraController: {fileID: 0}
-  player: {fileID: 0}
+  cameraController: {fileID: 963194229}
+  player: {fileID: 1032554670}
   interactDistance: 3
   isZoomed: 0
 --- !u!1001 &304182536
@@ -1389,8 +1389,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5567fcffbdb1ed459024a8b6b84e503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
-  cameraController: {fileID: 0}
-  player: {fileID: 0}
+  cameraController: {fileID: 963194229}
+  player: {fileID: 1032554670}
   interactDistance: 3
   isZoomed: 0
 --- !u!4 &488099210 stripped
@@ -1994,8 +1994,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5567fcffbdb1ed459024a8b6b84e503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
-  cameraController: {fileID: 0}
-  player: {fileID: 0}
+  cameraController: {fileID: 963194229}
+  player: {fileID: 1032554670}
   interactDistance: 3
   isZoomed: 0
 --- !u!1001 &872460305
@@ -4169,8 +4169,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5567fcffbdb1ed459024a8b6b84e503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
-  cameraController: {fileID: 0}
-  player: {fileID: 0}
+  cameraController: {fileID: 963194229}
+  player: {fileID: 1032554670}
   interactDistance: 3
   isZoomed: 0
 --- !u!4 &1856884421 stripped
@@ -4523,8 +4523,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5567fcffbdb1ed459024a8b6b84e503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
-  cameraController: {fileID: 0}
-  player: {fileID: 0}
+  cameraController: {fileID: 963194229}
+  player: {fileID: 1032554670}
   interactDistance: 3
   isZoomed: 0
 --- !u!4 &1908386151 stripped
@@ -4575,8 +4575,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5567fcffbdb1ed459024a8b6b84e503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
-  cameraController: {fileID: 0}
-  player: {fileID: 0}
+  cameraController: {fileID: 963194229}
+  player: {fileID: 1032554670}
   interactDistance: 3
   isZoomed: 0
 --- !u!1 &2069089670
