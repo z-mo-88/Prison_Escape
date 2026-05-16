@@ -91,8 +91,8 @@ public class CameraController : MonoBehaviour
         float inputX = 0f;
         float inputY = 0f;
 
-        if (Keyboard.current.aKey.isPressed) inputX = 1f;
-        if (Keyboard.current.dKey.isPressed) inputX = -1f;
+        if (Keyboard.current.aKey.isPressed) inputX = -1f;
+        if (Keyboard.current.dKey.isPressed) inputX = 1f;
         if (Keyboard.current.wKey.isPressed) inputY = 1f;
         if (Keyboard.current.sKey.isPressed) inputY = -1f;
 
