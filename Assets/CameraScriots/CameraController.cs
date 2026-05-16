@@ -91,10 +91,10 @@ public class CameraController : MonoBehaviour
         float inputX = 0f;
         float inputY = 0f;
 
-        if (Keyboard.current.leftArrowKey.isPressed) inputX = -1f;
-        if (Keyboard.current.rightArrowKey.isPressed) inputX = 1f;
-        if (Keyboard.current.upArrowKey.isPressed) inputY = 1f;
-        if (Keyboard.current.downArrowKey.isPressed) inputY = -1f;
+        if (Keyboard.current.aKey.isPressed) inputX = -1f;
+        if (Keyboard.current.dKey.isPressed) inputX = 1f;
+        if (Keyboard.current.wKey.isPressed) inputY = 1f;
+        if (Keyboard.current.sKey.isPressed) inputY = -1f;
 
         currentYaw += inputX * rotationSpeed * Time.deltaTime;
         currentPitch -= inputY * rotationSpeed * Time.deltaTime;
