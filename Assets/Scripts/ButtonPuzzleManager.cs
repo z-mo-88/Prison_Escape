@@ -25,10 +25,8 @@ public class ButtonPuzzleManager : MonoBehaviour
 
     public FlashEffect flashEffect;
 
-    // Correct order
     private string[] correctSequence = { "Green", "Red", "Blue" };
 
-    // Player input
     private string[] playerSequence = new string[3];
     private int inputIndex = 0;
 
@@ -48,17 +46,22 @@ public class ButtonPuzzleManager : MonoBehaviour
         Debug.Log("Power ON - Buttons ready");
     }
 
+    public void TurnPowerOff()
+    {
+        powerOn = false;
+        ResetPuzzle();
+
+        Debug.Log("Power OFF - Buttons disabled");
+    }
+
     public void PressButton(string color)
     {
         if (!powerOn || puzzleSolved)
             return;
 
-        // Save player input
         playerSequence[inputIndex] = color;
-
         inputIndex++;
 
-        // Wait until ALL buttons pressed
         if (inputIndex >= correctSequence.Length)
         {
             CheckSequence();
@@ -97,31 +100,22 @@ public class ButtonPuzzleManager : MonoBehaviour
 
         Debug.Log("Puzzle Solved!");
 
-        // Stop timer
         GameTimer timer = FindFirstObjectByType<GameTimer>();
 
         if (timer != null)
         {
             timer.timerRunning = false;
 
-            // SAVE DATA
-            PlayerPrefs.SetInt(
-                "CompletedPuzzles", 4);
-
-            PlayerPrefs.SetInt(
-                "FinalScore",
-                timer.GetScore());
-
-            PlayerPrefs.SetString(
-                "TimeTaken",
-                timer.GetFormattedTimeTaken());
+            PlayerPrefs.SetInt("CompletedPuzzles", 4);
+            PlayerPrefs.SetInt("FinalScore", timer.GetScore());
+            PlayerPrefs.SetString("TimeTaken", timer.GetFormattedTimeTaken());
         }
 
-        // Reset input
         inputIndex = 0;
 
         StartCoroutine(LoadWinScreen());
     }
+
     IEnumerator LoadWinScreen()
     {
         yield return new WaitForSeconds(winDelay);
@@ -133,38 +127,17 @@ public class ButtonPuzzleManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.6f);
 
-        // Wrong sound
         if (audioSource != null && wrongSound != null)
         {
             audioSource.PlayOneShot(wrongSound);
         }
-        if(flashEffect != null)
+
+        if (flashEffect != null)
         {
             flashEffect.WrongFeedback();
         }
-        // Reset input
-        inputIndex = 0;
-        playerSequence = new string[3];
-
-        // Reset buttons
-        greenButton.TurnOff();
-        redButton.TurnOff();
-        blueButton.TurnOff();
-
-        // Reset handle + room lights
-        if (powerHandle != null)
-            powerHandle.ResetHandle();
-
-        Debug.Log("Wrong → Reset ALL");
-    }
-
-    public void ResetPuzzle()
-    {
-
-       
 
         inputIndex = 0;
-
         playerSequence = new string[3];
 
         if (greenButton != null)
@@ -176,6 +149,24 @@ public class ButtonPuzzleManager : MonoBehaviour
         if (blueButton != null)
             blueButton.TurnOff();
 
-        
+        if (powerHandle != null)
+            powerHandle.ResetHandle();
+
+        Debug.Log("Wrong → Reset ALL");
+    }
+
+    public void ResetPuzzle()
+    {
+        inputIndex = 0;
+        playerSequence = new string[3];
+
+        if (greenButton != null)
+            greenButton.TurnOff();
+
+        if (redButton != null)
+            redButton.TurnOff();
+
+        if (blueButton != null)
+            blueButton.TurnOff();
     }
 }

@@ -4,7 +4,7 @@ public class PowerSwitchLevel4 : MonoBehaviour
 {
     public Transform switchBone;
 
-    public float offRotation = -18.519f;
+    public float offRotation = -89.98f;
     public float onRotation = 160f;
 
     public ButtonPuzzleManager manager;
@@ -27,7 +27,11 @@ public class PowerSwitchLevel4 : MonoBehaviour
             return;
         }
 
-        if (!isOn)
+        if (isOn)
+        {
+            TurnOffSwitch();
+        }
+        else
         {
             TurnOnSwitch();
         }
@@ -44,5 +48,18 @@ public class PowerSwitchLevel4 : MonoBehaviour
             manager.TurnPowerOn();
 
         Debug.Log("Switch ON");
+    }
+
+    void TurnOffSwitch()
+    {
+        isOn = false;
+
+        if (switchBone != null)
+            switchBone.localRotation = Quaternion.Euler(offRotation, 0f, 0f);
+
+        if (manager != null)
+            manager.TurnPowerOff();
+
+        Debug.Log("Switch OFF");
     }
 }
