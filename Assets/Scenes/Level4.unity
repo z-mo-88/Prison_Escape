@@ -320,8 +320,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5567fcffbdb1ed459024a8b6b84e503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
-  cameraController: {fileID: 0}
-  player: {fileID: 0}
   interactDistance: 3
   isZoomed: 0
 --- !u!65 &101420026
@@ -1001,6 +999,10 @@ PrefabInstance:
       propertyPath: flashImage
       value: 
       objectReference: {fileID: 231442605}
+    - target: {fileID: 5514430807288984199, guid: 5dddf74e994e70b4a8993a23c509146f, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 3510823086836411788, guid: 9ae1c8f6d62881040a942a2871cfbf4b, type: 2}
     - target: {fileID: 6117053794824461079, guid: 5dddf74e994e70b4a8993a23c509146f, type: 3}
       propertyPath: m_Name
       value: EffectsManager
@@ -2125,8 +2127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5567fcffbdb1ed459024a8b6b84e503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
-  cameraController: {fileID: 0}
-  player: {fileID: 0}
   interactDistance: 3
   isZoomed: 0
 --- !u!1 &1050359966 stripped
@@ -2143,7 +2143,7 @@ AudioSource:
   m_GameObject: {fileID: 1050359966}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 3510823086836411788, guid: 9ae1c8f6d62881040a942a2871cfbf4b, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 399b3628aa3a8714fb80740448283682, type: 3}
   m_PlayOnAwake: 0
@@ -2447,8 +2447,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5567fcffbdb1ed459024a8b6b84e503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
-  cameraController: {fileID: 0}
-  player: {fileID: 0}
   interactDistance: 3
   isZoomed: 0
 --- !u!114 &1185606770
@@ -2502,7 +2500,7 @@ AudioSource:
   m_GameObject: {fileID: 1185606767}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 3510823086836411788, guid: 9ae1c8f6d62881040a942a2871cfbf4b, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: ec0f388d1bcc01c4ca4149f00d1dcc0b, type: 3}
   m_PlayOnAwake: 0
@@ -2883,7 +2881,7 @@ AudioSource:
   m_GameObject: {fileID: 1334938163}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 3510823086836411788, guid: 9ae1c8f6d62881040a942a2871cfbf4b, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: a98a1ccb1f60b2e4f8e9ede7c769d18c, type: 3}
   m_PlayOnAwake: 0
@@ -3483,8 +3481,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5567fcffbdb1ed459024a8b6b84e503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
-  cameraController: {fileID: 0}
-  player: {fileID: 0}
   interactDistance: 3
   isZoomed: 0
 --- !u!1 &1575325562 stripped
@@ -3732,8 +3728,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5567fcffbdb1ed459024a8b6b84e503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
-  cameraController: {fileID: 0}
-  player: {fileID: 0}
   interactDistance: 3
   isZoomed: 0
 --- !u!1001 &1638388788
@@ -3823,7 +3817,7 @@ AudioSource:
   m_GameObject: {fileID: 1473452525}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 3510823086836411788, guid: 9ae1c8f6d62881040a942a2871cfbf4b, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 399b3628aa3a8714fb80740448283682, type: 3}
   m_PlayOnAwake: 0
@@ -5041,7 +5035,7 @@ AudioSource:
   m_GameObject: {fileID: 2048187669}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 3510823086836411788, guid: 9ae1c8f6d62881040a942a2871cfbf4b, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: f852e8fa688c73c438633c239491bedd, type: 3}
   m_PlayOnAwake: 1
@@ -5455,7 +5449,7 @@ AudioSource:
   m_GameObject: {fileID: 1487421076}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 3510823086836411788, guid: 9ae1c8f6d62881040a942a2871cfbf4b, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 399b3628aa3a8714fb80740448283682, type: 3}
   m_PlayOnAwake: 0
