@@ -45,45 +45,25 @@ public class HammerPickup : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
+            float distance = Vector3.Distance(transform.position, player.position);
+
             if (!isPickedUp)
             {
-                TryPickUpHammer();
-            }
-            else if (!nearBreakableScreen)
-            {
-                ReturnHammer();
-            }
-        }
-    }
-
-    void TryPickUpHammer()
-    {
-        if (nearBreakableScreen)
-        {
-            Debug.Log("You cannot pick up the hammer from the glass area.");
-            return;
-        }
-
-        float distance = Vector3.Distance(transform.position, player.position);
-
-        if (distance > pickupDistance)
-        {
-            Debug.Log("You are too far from the hammer.");
-            return;
-        }
-
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, pickupDistance))
-        {
-            if (hit.transform == transform || hit.transform.IsChildOf(transform))
-            {
-                PickUpHammer();
+                if (distance <= pickupDistance && !nearBreakableScreen)
+                {
+                    PickUpHammer();
+                }
+                else
+                {
+                    Debug.Log("You must be near the hammer to pick it up.");
+                }
             }
             else
             {
-                Debug.Log("Look at the hammer first.");
+                if (!nearBreakableScreen)
+                {
+                    ReturnHammer();
+                }
             }
         }
     }
