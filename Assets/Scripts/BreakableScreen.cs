@@ -18,6 +18,8 @@ public class BreakableScreen : MonoBehaviour
 
     void Start()
     {
+        isBroken = false;
+
         if (cameraController == null && Camera.main != null)
         {
             cameraController = Camera.main.GetComponent<CameraController>();
@@ -39,20 +41,20 @@ public class BreakableScreen : MonoBehaviour
 
         float distance = Vector3.Distance(transform.position, player.position);
 
-        if (cameraController != null && cameraController.IsInteracting())
+        if (cameraController != null && cameraController.IsInteracting() && distance <= breakDistance)
         {
-            if (distance <= breakDistance)
-            {
-                HammerPickup.nearBreakableScreen = true;
+            HammerPickup.nearBreakableScreen = true;
 
-                if (Input.GetKeyDown(KeyCode.E) && HammerPickup.hasHammer)
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (HammerPickup.hasHammer)
                 {
                     BreakScreen();
                 }
-            }
-            else
-            {
-                HammerPickup.nearBreakableScreen = false;
+                else
+                {
+                    Debug.Log("You need to pick up the hammer first!");
+                }
             }
         }
         else
@@ -63,6 +65,12 @@ public class BreakableScreen : MonoBehaviour
 
     void BreakScreen()
     {
+        if (!HammerPickup.hasHammer)
+        {
+            Debug.Log("Cannot break the glass without hammer.");
+            return;
+        }
+
         isBroken = true;
         HammerPickup.nearBreakableScreen = false;
 

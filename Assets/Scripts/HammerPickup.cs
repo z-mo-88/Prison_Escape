@@ -4,7 +4,7 @@ public class HammerPickup : MonoBehaviour
 {
     public Transform player;
     public Transform handPoint;
-    public float pickupDistance = 10f;
+    public float pickupDistance = 3f;
 
     private bool isPickedUp = false;
 
@@ -13,47 +13,77 @@ public class HammerPickup : MonoBehaviour
     private Transform originalParent;
 
     public static bool hasHammer = false;
-
-    // This stops the hammer from returning when player is near the breakable screen
     public static bool nearBreakableScreen = false;
 
     public CameraController cameraController;
+
     [Header("Audio")]
     public AudioSource pickupAudio;
+
     void Start()
     {
+        hasHammer = false;
+        nearBreakableScreen = false;
+        isPickedUp = false;
+
         originalPosition = transform.position;
         originalRotation = transform.rotation;
         originalParent = transform.parent;
 
-        if (cameraController == null &&
-    Camera.main != null)
+        if (cameraController == null && Camera.main != null)
         {
-            cameraController =
-                Camera.main.GetComponent<CameraController>();
+            cameraController = Camera.main.GetComponent<CameraController>();
         }
     }
 
     void Update()
     {
-        float distance = Vector3.Distance(
-            transform.position,
-            player.position);
-
-        //  ONLY allow while zooming/interacting
-        if (cameraController != null &&
-            cameraController.IsInteracting())
+        if (cameraController == null || !cameraController.IsInteracting())
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (!isPickedUp)
             {
-                if (!isPickedUp && distance <= pickupDistance)
-                {
-                    PickUpHammer();
-                }
-                else if (isPickedUp && !nearBreakableScreen)
-                {
-                    ReturnHammer();
-                }
+                TryPickUpHammer();
+            }
+            else if (!nearBreakableScreen)
+            {
+                ReturnHammer();
+            }
+        }
+    }
+
+    void TryPickUpHammer()
+    {
+        if (nearBreakableScreen)
+        {
+            Debug.Log("You cannot pick up the hammer from the glass area.");
+            return;
+        }
+
+        float distance = Vector3.Distance(transform.position, player.position);
+
+        if (distance > pickupDistance)
+        {
+            Debug.Log("You are too far from the hammer.");
+            return;
+        }
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, pickupDistance))
+        {
+            if (hit.transform == transform || hit.transform.IsChildOf(transform))
+            {
+                PickUpHammer();
+            }
+            else
+            {
+                Debug.Log("Look at the hammer first.");
             }
         }
     }
