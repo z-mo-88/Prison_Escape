@@ -12,11 +12,14 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelSelection.unity
     guid: 7c40e29fb0e9109468ae812c76d05dcf
   - enabled: 1
-    path: Assets/Scenes/WinScreen.unity
-    guid: 2eb62a78481d9b84d845ecd6a519a4a1
+    path: Assets/Scenes/StoryScene1.unity
+    guid: eb40feaf129997f449833bf33a9e22bb
   - enabled: 1
-    path: Assets/Scenes/loseScreen.unity
-    guid: 218710a0f4e36aa4f893c2fdd5e23a5b
+    path: Assets/Scenes/StoryScene2.unity
+    guid: af6e9da74798d164f9e1165bc89e4be8
+  - enabled: 1
+    path: Assets/Scenes/StoryScene3.unity
+    guid: 427a309e3d6a13f4daf305eb93f00e8e
   - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: ed8bc238254c37a4abab827c6f14ec80
@@ -27,14 +30,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Level3.unity
     guid: 9fbc63e080715b947935a0c7599561ed
   - enabled: 1
-    path: Assets/Scenes/StoryScene1.unity
-    guid: eb40feaf129997f449833bf33a9e22bb
+    path: Assets/Scenes/Level4.unity
+    guid: d66dbe8c6e4d33b49bcec66646477fa0
   - enabled: 1
-    path: Assets/Scenes/StoryScene2.unity
-    guid: af6e9da74798d164f9e1165bc89e4be8
-  - enabled: 1
-    path: Assets/Scenes/StoryScene3.unity
-    guid: 427a309e3d6a13f4daf305eb93f00e8e
+    path: Assets/Scenes/Level5.unity
+    guid: 318f1ebdf4f07d1489bb258a5714b0ba
   - enabled: 1
     path: Assets/Scenes/MainMenu 1.unity
     guid: 88cbfbba1ded7a045b0ba8fa1d058832
@@ -51,11 +51,14 @@ EditorBuildSettings:
     path: Assets/Scenes/PauseScene.unity
     guid: 25ee74210d1042b46b2fdf07eb60c0cc
   - enabled: 1
-    path: Assets/Scenes/Level5.unity
-    guid: 318f1ebdf4f07d1489bb258a5714b0ba
+    path: Assets/Scenes/WinScreen.unity
+    guid: 2eb62a78481d9b84d845ecd6a519a4a1
   - enabled: 1
     path: Assets/Scenes/WinScene.unity
     guid: bbf7a6bd74eb3f24c99e9bee0b569fd0
+  - enabled: 1
+    path: Assets/Scenes/loseScreen.unity
+    guid: 218710a0f4e36aa4f893c2fdd5e23a5b
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 289c1b55c9541489481df5cc06664110, type: 3}
   m_UseUCBPForAssetBundles: 0
