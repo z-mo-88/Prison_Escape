@@ -349,7 +349,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 915816365469099663, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 102
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 915816365469099663, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -369,7 +369,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 915816365469099663, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 14
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 915816365469099663, guid: 4f036a6cc7accef43a0b14015fbf1de0, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -692,8 +692,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "WASD \u2192 Move  \r\nE / Mouse\u2192 Interact  \r\nClick \u2192 Zoom 
-    \r\nESC \u2192 Exit Zoom  \r\n\r\nSolve puzzles and escape before time runs out!"
+  m_text: "WASD \u2192 Move  \nArrows \u2192 Move Objects\r\nE / Mouse\u2192 Interact 
+    \r\nClick \u2192 Zoom  \r\nESC \u2192 Exit Zoom  \n\r\nSolve puzzles and escape
+    before time runs out!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -720,8 +721,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
