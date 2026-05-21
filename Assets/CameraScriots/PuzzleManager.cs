@@ -11,7 +11,7 @@ public class PuzzleManager : MonoBehaviour
     private bool isSolved = false;
 
     [Header("Door")]
-    public SlidingDoor door; 
+    public SlidingDoor door;
 
     void Awake()
     {
@@ -21,7 +21,7 @@ public class PuzzleManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    // Start puzzle (called when camera zooms)
+    // Start puzzle
     public void StartPuzzle()
     {
         isActive = true;
@@ -40,21 +40,24 @@ public class PuzzleManager : MonoBehaviour
 
         GameTimer timer = FindFirstObjectByType<GameTimer>();
 
-        int score = timer.GetScore();
+        if (timer != null)
+        {
+            int score = timer.GetScore();
 
-        Debug.Log("Score: " + score);
+            Debug.Log("Score: " + score);
+
+            PlayerPrefs.SetInt("FinalScore", score);
+            PlayerPrefs.SetString("TimeTaken", timer.GetFormattedTimeTaken());
+        }
 
         Debug.Log("Puzzle Solved!");
 
         // SAVE DATA
-        PlayerPrefs.SetInt("CompletedPuzzles", 3);
+        PlayerPrefs.SetInt("CompletedPuzzles", 4);
 
-        PlayerPrefs.SetInt("FinalScore", score);
-
-        PlayerPrefs.SetString(
-            "TimeTaken",
-            timer.GetFormattedTimeTaken()
-        );
+        // UNLOCK LEVEL 5
+        PlayerPrefs.SetInt("levelAt", 5);
+        PlayerPrefs.Save();
 
         // OPEN DOOR
         if (door != null)
@@ -79,22 +82,19 @@ public class PuzzleManager : MonoBehaviour
     // Called when player makes mistake
     public void ResetPuzzle()
     {
-        flashEffect.WrongFeedback();
+        if (flashEffect != null)
+            flashEffect.WrongFeedback();
 
         if (!isActive) return;
 
         Debug.Log("Puzzle Reset");
-
-        // Puzzle scripts will reset themselves
     }
 
-    // Check if puzzle is active
     public bool IsActive()
     {
         return isActive;
     }
 
-    // Check if solved
     public bool IsSolved()
     {
         return isSolved;

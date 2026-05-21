@@ -6,7 +6,7 @@ public class Level2Manager : MonoBehaviour
     public SlidingDoor door;
 
     [Header("Timer")]
-    public GameTimer timer; 
+    public GameTimer timer;
 
     [Header("Win Settings")]
     public float winDelay = 2f;
@@ -41,22 +41,17 @@ public class Level2Manager : MonoBehaviour
 
     void LoadWinScreen()
     {
-        // Unlock level
-        PlayerPrefs.SetInt("levelAt", 2);
+        // SAVE DATA
+        PlayerPrefs.SetInt("CompletedPuzzles", 2);
+
+        // UNLOCK LEVEL 3
+        PlayerPrefs.SetInt("levelAt", 3);
 
         // SAVE SCORE
         if (timer != null)
         {
-            PlayerPrefs.SetInt(
-                "CompletedPuzzles", 2);
-
-            PlayerPrefs.SetInt(
-                "FinalScore",
-                timer.GetScore());
-
-            PlayerPrefs.SetString(
-                "TimeTaken",
-                timer.GetFormattedTimeTaken());
+            PlayerPrefs.SetInt("FinalScore", timer.GetScore());
+            PlayerPrefs.SetString("TimeTaken", timer.GetFormattedTimeTaken());
         }
 
         PlayerPrefs.Save();

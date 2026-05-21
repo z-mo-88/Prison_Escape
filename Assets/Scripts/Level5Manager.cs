@@ -11,6 +11,7 @@ public class Level5Manager : MonoBehaviour
 
     private bool switchSolved = false;
     private bool keypadSolved = false;
+    private bool levelCompleted = false;
 
     public void SwitchPuzzleSolved()
     {
@@ -31,8 +32,10 @@ public class Level5Manager : MonoBehaviour
 
     private void TryOpenDoor()
     {
-        if (switchSolved && keypadSolved)
+        if (switchSolved && keypadSolved && !levelCompleted)
         {
+            levelCompleted = true;
+
             Debug.Log("Level 5 completed!");
 
             if (door != null)
@@ -44,30 +47,25 @@ public class Level5Manager : MonoBehaviour
 
             if (timer != null)
             {
-                // Stop timer
                 timer.timerRunning = false;
 
-                // SAVE DATA
-                PlayerPrefs.SetInt(
-                    "CompletedPuzzles", 5);
-
-                PlayerPrefs.SetInt(
-                    "FinalScore",
-                    timer.GetScore());
-
-                PlayerPrefs.SetString(
-                    "TimeTaken",
-                    timer.GetFormattedTimeTaken());
+                PlayerPrefs.SetInt("CompletedPuzzles", 5);
+                PlayerPrefs.SetInt("FinalScore", timer.GetScore());
+                PlayerPrefs.SetString("TimeTaken", timer.GetFormattedTimeTaken());
             }
+
+            // Keep Level 5 unlocked
+            PlayerPrefs.SetInt("levelAt", 5);
+            PlayerPrefs.Save();
 
             StartCoroutine(LoadWinScreen());
         }
+    }
 
-        IEnumerator LoadWinScreen()
-        {
-            yield return new WaitForSeconds(winDelay);
+    IEnumerator LoadWinScreen()
+    {
+        yield return new WaitForSeconds(winDelay);
 
-            SceneManager.LoadScene("WinScreen");
-        }
+        SceneManager.LoadScene("WinScreen");
     }
 }
