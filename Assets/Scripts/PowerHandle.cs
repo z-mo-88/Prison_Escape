@@ -23,7 +23,6 @@ public class PowerHandle : MonoBehaviour
     public GameObject roomLight;
 
     private bool isOn = false;
-    private bool selected = false;
 
     void Start()
     {
@@ -80,14 +79,7 @@ public class PowerHandle : MonoBehaviour
 
     void Activate()
     {
-        // FIRST CLICK = SELECT ONLY
-        if (!selected)
-        {
-            selected = true;
-            return;
-        }
-
-        // SECOND CLICK = ACTIVATE
+        // TOGGLE
         isOn = !isOn;
 
         // SOUND
@@ -141,7 +133,6 @@ public class PowerHandle : MonoBehaviour
     public void ResetHandle()
     {
         isOn = false;
-        selected = false;
 
         // Move UP
         MoveUp();

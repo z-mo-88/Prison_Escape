@@ -17,6 +17,8 @@ public class PuzzleButtonLevel4 : MonoBehaviour
     [Header("Sound")]
     public AudioSource audioSource;
     public AudioClip clickSound;
+    [Header("Sound")]
+    public AudioClip lockedSound;
 
     [Header("Camera")]
     public CameraController cameraController;
@@ -76,7 +78,15 @@ public class PuzzleButtonLevel4 : MonoBehaviour
             return;
 
         if (!manager.powerOn)
+        {
+            // PLAY LOCKED SOUND
+            if (audioSource != null && lockedSound != null)
+            {
+                audioSource.PlayOneShot(lockedSound);
+            }
+
             return;
+        }
 
         // FIRST CLICK = SELECT
         if (!selected)
