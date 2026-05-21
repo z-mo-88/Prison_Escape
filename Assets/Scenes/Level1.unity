@@ -15,12 +15,12 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
   m_Fog: 1
-  m_FogColor: {r: 0.025157154, g: 0.024919821, b: 0.024919821, a: 1}
+  m_FogColor: {r: 0.13333334, g: 0.1254902, b: 0.1254902, a: 1}
   m_FogMode: 1
   m_FogDensity: 0.046
   m_LinearFogStart: 11
   m_LinearFogEnd: 40
-  m_AmbientSkyColor: {r: 0.15, g: 0.15, b: 0.15, a: 1}
+  m_AmbientSkyColor: {r: 0.29803923, g: 0.29803923, b: 0.29803923, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 20201, guid: 0000000000000000f000000000000000, type: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: b70ef97aea209014d884654b03765fd9, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -10680,6 +10680,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   interactDistance: 3
   isZoomed: 0
+--- !u!1 &2046311946
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2046311948}
+  - component: {fileID: 2046311947}
+  m_Layer: 0
+  m_Name: AudioInitializer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2046311947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046311946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ab669257abd85548bf40ab9296b3e59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioLoader
+  mainMixer: {fileID: 24100000, guid: 9ae1c8f6d62881040a942a2871cfbf4b, type: 2}
+--- !u!4 &2046311948
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046311946}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.82419, y: 1.02122, z: 6.65902}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2069089670
 GameObject:
   m_ObjectHideFlags: 0
@@ -11217,3 +11262,4 @@ SceneRoots:
   - {fileID: 1285981531}
   - {fileID: 2108006845}
   - {fileID: 1592471524}
+  - {fileID: 2046311948}
