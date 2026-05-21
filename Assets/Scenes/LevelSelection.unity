@@ -2313,8 +2313,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   levelButtons:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 529149180}
+  - {fileID: 923338531}
   - {fileID: 935788403}
   - {fileID: 198633813}
   - {fileID: 1045672015}
