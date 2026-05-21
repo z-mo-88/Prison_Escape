@@ -24,7 +24,6 @@ public class KeyPickup : MonoBehaviour
     {
         if (playerNear && !picked && Input.GetKeyDown(KeyCode.E))
         {
-            // Fix: Don't allow picking up a new key if already holding one
             if (inventory != null && inventory.hasKey)
             {
                 return;

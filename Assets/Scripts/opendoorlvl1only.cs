@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
-using TMPro; // Added for TextMeshPro UI support
+using TMPro; 
 
 public class opendoorlvl1only : MonoBehaviour
 {
@@ -58,20 +58,20 @@ public class opendoorlvl1only : MonoBehaviour
 
             if (inventory.keyAttempts >= 3)
             {
-                // --- CORRECT KEY LOGIC ---
+                
                 if (!opening)
                 {
                     opening = true;
 
                     if (!soundPlayed && audioSource != null)
                     {
-                        // 1. Play the unlock click sound
+                        // Play the unlock click sound
                         if (correctKeySound != null)
                         {
                             audioSource.PlayOneShot(correctKeySound);
                         }
 
-                        // 2. Play the door sliding open sound
+                        // Play the door sliding open sound
                         if (openSound != null)
                         {
                             audioSource.PlayOneShot(openSound);
