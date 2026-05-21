@@ -15,17 +15,21 @@ public class SettingsManager : MonoBehaviour
     [Header("UI Toggle")]
     public Toggle fullscreenToggle;
 
-    void Start()
+    System.Collections.IEnumerator Start()
     {
-        // 1. Load saved values (Default to 0.75 if first time playing)
         masterSlider.value = PlayerPrefs.GetFloat("MasterVol", 0.75f);
         sfxSlider.value = PlayerPrefs.GetFloat("SFXVol", 0.75f);
         musicSlider.value = PlayerPrefs.GetFloat("MusicVol", 0.75f);
 
-        // 2. Load Fullscreen state
-        fullscreenToggle.isOn = Screen.fullScreen;
+        fullscreenToggle.isOn =
+            Screen.fullScreenMode == FullScreenMode.FullScreenWindow;
 
-        // 3. Set the mixer levels immediately on start
+        Screen.fullScreenMode = fullscreenToggle.isOn
+            ? FullScreenMode.FullScreenWindow
+            : FullScreenMode.Windowed;
+
+        yield return null;
+
         SetMaster(masterSlider.value);
         SetSFX(sfxSlider.value);
         SetMusic(musicSlider.value);
@@ -52,6 +56,8 @@ public class SettingsManager : MonoBehaviour
 
     public void SetFullscreen(bool isFullscreen)
     {
-        Screen.fullScreen = isFullscreen;
+        Screen.fullScreenMode = isFullscreen
+            ? FullScreenMode.FullScreenWindow
+            : FullScreenMode.Windowed;
     }
 }

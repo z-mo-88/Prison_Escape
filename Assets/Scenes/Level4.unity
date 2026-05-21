@@ -673,6 +673,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e430e81b335b314498fff562349013cc, type: 3}
   m_PrefabInstance: {fileID: 833032874}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &167525334
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 167525336}
+  - component: {fileID: 167525335}
+  m_Layer: 0
+  m_Name: AudioInitializer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &167525335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167525334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ab669257abd85548bf40ab9296b3e59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioLoader
+  mainMixer: {fileID: 24100000, guid: 9ae1c8f6d62881040a942a2871cfbf4b, type: 2}
+--- !u!4 &167525336
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167525334}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.82419, y: 1.02122, z: 6.65902}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &188099011 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 12957030165189846, guid: b0f798499730cfd48b88e935d9d1aba1, type: 3}
@@ -12906,3 +12951,4 @@ SceneRoots:
   - {fileID: 1853919330}
   - {fileID: 1937526221}
   - {fileID: 1804581788}
+  - {fileID: 167525336}
