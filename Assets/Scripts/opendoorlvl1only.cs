@@ -87,6 +87,10 @@ public class opendoorlvl1only : MonoBehaviour
                         PlayerPrefs.SetInt("CompletedPuzzles", 1);
                         PlayerPrefs.SetInt("FinalScore", timer.GetScore());
                         PlayerPrefs.SetString("TimeTaken", timer.GetFormattedTimeTaken());
+
+                        PlayerPrefs.SetInt("levelAt", 2);
+
+                        PlayerPrefs.Save();
                     }
 
                     if (!winStarted)

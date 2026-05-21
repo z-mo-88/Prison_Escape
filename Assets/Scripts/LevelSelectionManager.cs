@@ -13,8 +13,10 @@ public class LevelSelectionManager : MonoBehaviour
 
     void Start()
     {
-        // If no saved progress, only Level 1 is open
+      
+
         int levelAt = PlayerPrefs.GetInt("levelAt", 1);
+        Debug.Log("Level Selection levelAt = " + levelAt);
 
         level1Button.interactable = true;
         level2Button.interactable = levelAt >= 2;

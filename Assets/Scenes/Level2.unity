@@ -914,7 +914,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3850839214606643828, guid: e0bec34d79d60b14480521bc6f92441e, type: 3}
       propertyPath: loseDelay
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3850839214606643828, guid: e0bec34d79d60b14480521bc6f92441e, type: 3}
       propertyPath: timerText

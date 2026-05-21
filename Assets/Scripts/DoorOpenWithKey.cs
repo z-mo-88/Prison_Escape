@@ -73,9 +73,6 @@ public class DoorOpenWithKey : MonoBehaviour
                         PlayerPrefs.SetInt("CompletedPuzzles", 1);
                         PlayerPrefs.SetInt("FinalScore", timer.GetScore());
                         PlayerPrefs.SetString("TimeTaken", timer.GetFormattedTimeTaken());
-
-                        PlayerPrefs.SetInt("levelAt", 2);
-                        PlayerPrefs.Save();
                     }
 
                     if (!winStarted)
@@ -119,7 +116,6 @@ public class DoorOpenWithKey : MonoBehaviour
 
         feedbackText.gameObject.SetActive(false);
     }
-
 
     IEnumerator LoadWinScreen()
     {
