@@ -13,8 +13,7 @@ public class LevelSelectionManager : MonoBehaviour
 
     void Start()
     {
-        PlayerPrefs.DeleteAll();
-        PlayerPrefs.Save();
+   
 
         int levelAt = PlayerPrefs.GetInt("levelAt", 1);
 
