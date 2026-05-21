@@ -2388,7 +2388,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.8, y: 0.5, z: 1}
+  m_Size: {x: 0.8, y: 0.7, z: 1.3}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &421730654
 Transform:
@@ -2399,7 +2399,7 @@ Transform:
   m_GameObject: {fileID: 421730651}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.83, y: 0, z: 1.88}
+  m_LocalPosition: {x: 3.83, y: 0, z: 1.68}
   m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25941,7 +25941,9 @@ MonoBehaviour:
   cameraController: {fileID: 963194229}
   interactable: {fileID: 0}
   audioSource: {fileID: 1863281713}
-  resetSound: {fileID: 8300000, guid: 83013d09a81b22240bad626500c9a7b6, type: 3}
+  wrongSequenceSound: {fileID: 8300000, guid: 062bec26e1970f147bab3ed11cb43829, type: 3}
+  timerExpiredSound: {fileID: 8300000, guid: 3ca5f70d9c2c4d14187c7e1dc191719c, type: 3}
+  timeLimit: 20
 --- !u!4 &1863281712
 Transform:
   m_ObjectHideFlags: 0
@@ -25966,7 +25968,7 @@ AudioSource:
   m_GameObject: {fileID: 1863281710}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 3510823086836411788, guid: 9ae1c8f6d62881040a942a2871cfbf4b, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 83013d09a81b22240bad626500c9a7b6, type: 3}
   m_PlayOnAwake: 0

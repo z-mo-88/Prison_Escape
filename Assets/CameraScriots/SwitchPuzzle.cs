@@ -12,26 +12,38 @@ public class SwitchPuzzle : MonoBehaviour
     public CameraController cameraController;
     public Interactable interactable;
 
-    [Header("Sound")]
+    [Header("Sounds")]
     public AudioSource audioSource;
-    public AudioClip resetSound;
+    public AudioClip wrongSequenceSound;
+    public AudioClip timerExpiredSound;
 
+    [Header("Timer")]
+    public float timeLimit = 20f;
+
+    private bool timerRunning = false;
+    private Coroutine timerCoroutine;
 
     void Start()
     {
         if (audioSource == null)
             audioSource = GetComponent<AudioSource>();
 
-        if(hintGroup != null) 
+        if (hintGroup != null)
             hintGroup.SetActive(false);
-
     }
 
     public void RegisterInput(int index)
     {
+        // START TIMER ON FIRST SWITCH
+        if (!timerRunning)
+        {
+            timerRunning = true;
+            timerCoroutine = StartCoroutine(PuzzleTimer());
+        }
+
         playerInput.Add(index);
 
-        // ONLY CHECK AFTER FULL INPUT
+        // CHECK WHEN FULL SEQUENCE ENTERED
         if (playerInput.Count == correctSequence.Count)
         {
             CheckSequence();
@@ -63,7 +75,9 @@ public class SwitchPuzzle : MonoBehaviour
 
     void Update()
     {
-        if (cameraController == null || hintGroup == null || interactable == null)
+        if (cameraController == null ||
+            hintGroup == null ||
+            interactable == null)
             return;
 
         if (cameraController.currentTarget == interactable.transform)
@@ -80,21 +94,57 @@ public class SwitchPuzzle : MonoBehaviour
     {
         Debug.Log("Puzzle Solved!");
 
+        if (timerCoroutine != null)
+        {
+            StopCoroutine(timerCoroutine);
+        }
+
+        timerRunning = false;
         playerInput.Clear();
 
         PuzzleManager.Instance.SolvePuzzle();
     }
 
+    IEnumerator PuzzleTimer()
+    {
+        yield return new WaitForSeconds(timeLimit);
+
+        Debug.Log("Time Ran Out!");
+
+        // PLAY TIMEOUT SOUND 
+        if (audioSource != null &&
+            timerExpiredSound != null)
+        {
+            audioSource.PlayOneShot(timerExpiredSound);
+        }
+
+        playerInput.Clear();
+
+        foreach (Switch s in switches)
+        {
+            s.ResetSwitch();
+        }
+
+        timerRunning = false;
+    }
+
     IEnumerator ResetWithDelay()
     {
         yield return new WaitForSeconds(0.8f);
-        audioSource.PlayOneShot(resetSound);
 
-      
-        if (audioSource != null && resetSound != null)
+        // PLAY WRONG SEQUENCE SOUND
+        if (audioSource != null &&
+            wrongSequenceSound != null)
         {
-            audioSource.PlayOneShot(resetSound);
+            audioSource.PlayOneShot(wrongSequenceSound);
         }
+
+        if (timerCoroutine != null)
+        {
+            StopCoroutine(timerCoroutine);
+        }
+
+        timerRunning = false;
 
         playerInput.Clear();
 
