@@ -13,10 +13,10 @@ public class LevelSelectionManager : MonoBehaviour
 
     void Start()
     {
-      
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
 
         int levelAt = PlayerPrefs.GetInt("levelAt", 1);
-        Debug.Log("Level Selection levelAt = " + levelAt);
 
         level1Button.interactable = true;
         level2Button.interactable = levelAt >= 2;
