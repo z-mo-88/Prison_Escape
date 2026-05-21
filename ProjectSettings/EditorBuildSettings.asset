@@ -5,9 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/NewGame.unity
-    guid: aff07515dc8e63748ad260a040078548
+  - enabled: 1
+    path: Assets/Scenes/MainMenu 1.unity
+    guid: 88cbfbba1ded7a045b0ba8fa1d058832
   - enabled: 1
     path: Assets/Scenes/LevelSelection.unity
     guid: 7c40e29fb0e9109468ae812c76d05dcf
@@ -36,21 +36,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Level5.unity
     guid: 318f1ebdf4f07d1489bb258a5714b0ba
   - enabled: 1
-    path: Assets/Scenes/MainMenu 1.unity
-    guid: 88cbfbba1ded7a045b0ba8fa1d058832
-  - enabled: 1
-    path: Assets/Scenes/InstructionsScene.unity
-    guid: 90d27ba5ceaf645418243383e2e64602
-  - enabled: 1
-    path: Assets/Scenes/SettingsScene.unity
-    guid: 908932e3f689bdc49899a86c0ac66fc9
-  - enabled: 1
-    path: Assets/Scenes/CreditsScene.unity
-    guid: 7d9b52ac417146941b226dd916e9de92
-  - enabled: 1
-    path: Assets/Scenes/PauseScene.unity
-    guid: 25ee74210d1042b46b2fdf07eb60c0cc
-  - enabled: 1
     path: Assets/Scenes/WinScreen.unity
     guid: 2eb62a78481d9b84d845ecd6a519a4a1
   - enabled: 1
@@ -59,6 +44,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/loseScreen.unity
     guid: 218710a0f4e36aa4f893c2fdd5e23a5b
+  - enabled: 1
+    path: Assets/Scenes/CreditsScene.unity
+    guid: 7d9b52ac417146941b226dd916e9de92
+  - enabled: 1
+    path: Assets/Scenes/InstructionsScene.unity
+    guid: 90d27ba5ceaf645418243383e2e64602
+  - enabled: 1
+    path: Assets/Scenes/SettingsScene.unity
+    guid: 908932e3f689bdc49899a86c0ac66fc9
+  - enabled: 1
+    path: Assets/Scenes/PauseScene.unity
+    guid: 25ee74210d1042b46b2fdf07eb60c0cc
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 289c1b55c9541489481df5cc06664110, type: 3}
   m_UseUCBPForAssetBundles: 0
