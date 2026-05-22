@@ -12,16 +12,10 @@ public class SwitchPuzzle : MonoBehaviour
     public CameraController cameraController;
     public Interactable interactable;
 
-    [Header("Sounds")]
+    [Header("Sound")]
     public AudioSource audioSource;
-    public AudioClip wrongSequenceSound;
-    public AudioClip timerExpiredSound;
+    public AudioClip resetSound;
 
-    [Header("Timer")]
-    public float timeLimit = 20f;
-
-    private bool timerRunning = false;
-    private Coroutine timerCoroutine;
 
     void Start()
     {
@@ -30,20 +24,14 @@ public class SwitchPuzzle : MonoBehaviour
 
         if (hintGroup != null)
             hintGroup.SetActive(false);
+
     }
 
     public void RegisterInput(int index)
     {
-        // START TIMER ON FIRST SWITCH
-        if (!timerRunning)
-        {
-            timerRunning = true;
-            timerCoroutine = StartCoroutine(PuzzleTimer());
-        }
-
         playerInput.Add(index);
 
-        // CHECK WHEN FULL SEQUENCE ENTERED
+        // ONLY CHECK AFTER FULL INPUT
         if (playerInput.Count == correctSequence.Count)
         {
             CheckSequence();
@@ -75,9 +63,7 @@ public class SwitchPuzzle : MonoBehaviour
 
     void Update()
     {
-        if (cameraController == null ||
-            hintGroup == null ||
-            interactable == null)
+        if (cameraController == null || hintGroup == null || interactable == null)
             return;
 
         if (cameraController.currentTarget == interactable.transform)
@@ -94,57 +80,21 @@ public class SwitchPuzzle : MonoBehaviour
     {
         Debug.Log("Puzzle Solved!");
 
-        if (timerCoroutine != null)
-        {
-            StopCoroutine(timerCoroutine);
-        }
-
-        timerRunning = false;
         playerInput.Clear();
 
         PuzzleManager.Instance.SolvePuzzle();
     }
 
-    IEnumerator PuzzleTimer()
-    {
-        yield return new WaitForSeconds(timeLimit);
-
-        Debug.Log("Time Ran Out!");
-
-        // PLAY TIMEOUT SOUND 
-        if (audioSource != null &&
-            timerExpiredSound != null)
-        {
-            audioSource.PlayOneShot(timerExpiredSound);
-        }
-
-        playerInput.Clear();
-
-        foreach (Switch s in switches)
-        {
-            s.ResetSwitch();
-        }
-
-        timerRunning = false;
-    }
-
     IEnumerator ResetWithDelay()
     {
         yield return new WaitForSeconds(0.8f);
+        audioSource.PlayOneShot(resetSound);
 
-        // PLAY WRONG SEQUENCE SOUND
-        if (audioSource != null &&
-            wrongSequenceSound != null)
+
+        if (audioSource != null && resetSound != null)
         {
-            audioSource.PlayOneShot(wrongSequenceSound);
+            audioSource.PlayOneShot(resetSound);
         }
-
-        if (timerCoroutine != null)
-        {
-            StopCoroutine(timerCoroutine);
-        }
-
-        timerRunning = false;
 
         playerInput.Clear();
 
