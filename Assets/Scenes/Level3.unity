@@ -25941,9 +25941,7 @@ MonoBehaviour:
   cameraController: {fileID: 963194229}
   interactable: {fileID: 0}
   audioSource: {fileID: 1863281713}
-  wrongSequenceSound: {fileID: 8300000, guid: 062bec26e1970f147bab3ed11cb43829, type: 3}
-  timerExpiredSound: {fileID: 8300000, guid: 3ca5f70d9c2c4d14187c7e1dc191719c, type: 3}
-  timeLimit: 20
+  resetSound: {fileID: 8300000, guid: 3ca5f70d9c2c4d14187c7e1dc191719c, type: 3}
 --- !u!4 &1863281712
 Transform:
   m_ObjectHideFlags: 0
